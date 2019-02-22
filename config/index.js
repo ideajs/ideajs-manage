@@ -13,8 +13,8 @@ module.exports = {
     proxyTable: {},
 
     // Various Dev Server settings
-    host: '0.0.0.0', // can be overwritten by process.env.HOST
-    port: 8668, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    host: 'localhost', // can be overwritten by process.env.HOST
+    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
@@ -45,12 +45,12 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../html/index.html'), // build打包项目文件目录名：html
+    index: path.resolve(__dirname, '../myhtml/index.html'), // build打包项目文件目录名
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../html'), // build打包项目文件目录名：html
+    assetsRoot: path.resolve(__dirname, '../myhtml'), // build打包项目文件目录名
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps

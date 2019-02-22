@@ -5,8 +5,6 @@
       <popup v-model="show"></popup>
     </div>
     <div class="container">
-      <img width="100px" height="100px" class="headerFace" :src="data.headerFace" />
-
       <Form ref="formInline" :model="data.formInline" :rules="data.ruleInline" inline>
         <FormItem prop="user">
           <Input type="text" size="large" v-model.trim="data.formInline.user" clearable placeholder="用户名 (6-18位英文、数字)">
@@ -14,10 +12,15 @@
           </Input>
         </FormItem>
         <FormItem prop="phone">
-          <Input class="phone" type="text" size="large" v-model.trim="data.formInline.phone" clearable placeholder="手机号 (11位数字)">
+          <Input class="phone" type="text" :maxlength="11" size="large" v-model.trim="data.formInline.phone" clearable placeholder="手机号 (必填)">
           <Icon type="md-phone-portrait" slot="prepend"></Icon>
           </Input>
-          <Button class="phoneCode" type="primary" @click="postCode()">发送验证码</Button>
+          <!-- <Button class="phoneCode" type="primary" @click="postCode()">发送验证码</Button> -->
+        </FormItem>
+        <FormItem prop="email">
+          <Input type="email" size="large" v-model.trim="data.formInline.email" clearable placeholder="邮箱 (必填)">
+          <Icon type="ios-mail" slot="prepend"></Icon>
+          </Input>
         </FormItem>
         <FormItem prop="password">
           <Input type="password" size="large" v-model.trim="data.formInline.password" clearable placeholder="密码 (6-18位英文、数字)">
@@ -48,6 +51,7 @@ export default {
         formInline: {
           user: '',
           phone: '',
+          email: '',
           password: ''
         },
         ruleInline: {
@@ -58,6 +62,10 @@ export default {
           phone: [
             { required: true, message: '手机号错误', trigger: 'blur' },
             { pattern: /^1[34578]\d{9}$/, message: '手机号应为11位数字', trigger: 'blur' }
+          ],
+          email: [
+            { required: true, message: '邮箱错误', trigger: 'blur' },
+            { pattern: /^([a-zA-Z0-9]+[_|\-|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\-|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/, message: '邮箱格式应为xx@xx.com等', trigger: 'blur' }
           ],
           password: [
             { required: true, message: '密码错误', trigger: 'blur' },

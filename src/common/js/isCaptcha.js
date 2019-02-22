@@ -1,6 +1,6 @@
 /*Created by macmzon@163.com*/
 
-(function (window) {
+export function drawCaptcha (opts) {
   const l = 40,                   // 滑块边长
     r = 9,                        // 滑块半径
     w = 300,                      // canvas宽度
@@ -239,13 +239,8 @@
     }
 
   }
-
-  window.drawCaptcha = {
-    init: function (opts) {
-      return new drawCaptcha(opts).init()
-    }
-  }
-}(window))
+  new drawCaptcha(opts).init()
+}
 
 
 
