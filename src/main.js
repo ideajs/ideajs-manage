@@ -31,6 +31,7 @@ Vue.prototype.$back = goBack // 项目内页面返回back：this.$back(param)
 // 禁用浏览器返回历史页功能，可以让用户一直停留在当前页面
 window.onpopstate = () => {
   history.go(1)
+  location.reload()
 }
 router.beforeEach((to, from, next) => { // 在页面跳转之前处理事件：to即将进入的路由页面，from当前即将离开的路由页面
   if (to) {

@@ -26,11 +26,10 @@ ios-contact会员按钮，md-menu菜单按钮，ios-arrow-back左侧返回按钮
 */
 
 export default new Router({
-  mode: 'history',
-  history: true,
+  base: '',
   transitionOnLoad:true,
   routes: [{
-    path: '/',
+    path: '',
     name: 'AppHello',
     component: AppHello,
     meta: {
