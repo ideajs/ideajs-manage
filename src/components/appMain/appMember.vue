@@ -2,71 +2,106 @@
 <template>
   <div class="appMember">
     <div v-transfer-dom>
-      <popup v-model="show"></popup>
+      <popup v-model="showBack"></popup>
     </div>
     <appHeader :headerInfo="data.headerInfo"></appHeader>
-    <div class="">
-      <Button type="success" round @click.active="back()">上一页</Button>
-      <Button type="success" round @click.active="start()">下一页</Button>
+    <div class="container">
     </div>
   </div>
 </template>
 
 <script>
-  import { Button } from 'iview'
-  import { Popup } from 'vux'
-  import appHeader from'@/components/appConfig/appHeader.vue'
+import { Button, Row, Col, Modal, Icon, CellGroup, Cell } from 'iview'
+import { Popup } from 'vux'
+import { _getCourse } from '@/common/js/appMain/function'
+import appHeader from '@/components/appConfig/appHeader.vue'
 export default {
   name: 'appMember',
   data () {
     return {
-      show: false,
+      showBack: false,
       data: {
-        headerInfo: this.$route.meta
+        user: {},
+        userLogin: '',                  // 客户登录状态
+        headerInfo: this.$route.meta,
+        newDate: '-年-月-日',
+        newWeek: '周-'
       }
     }
   },
-  mounted () {
+  created () {
+    this.data.userLogin = localStorage.getItem('userLogin') || ''     // 获取客户登录状态
+    if (this.data.userLogin) {
+      this.data.user = JSON.parse(localStorage.getItem(this.data.userLogin))       // 获取客户信息
+    }
+    this.getNewDate()
     /*自定义顶部header两侧按钮事件+页面左右滑动事件*/
     this.$route.meta.header.leftFuc = this.back                 // header左侧返回按钮事件
-    this.$route.meta.header.rightFuc = this.getMenu             // header右侧菜单按钮事件
-    this.$route.meta.touch.leftFuc = this.start                 // 页面向左滑动事件
+    this.$route.meta.header.rightFuc = this.getSet             // header右侧菜单按钮事件
     this.$route.meta.touch.rightFuc = this.back                 // 页面向右滑动事件
   },
   methods: {
-    start () {
-      this.$route.meta.isBack = false
-      this.$push({
-        path: '/appIndex',
-        query: {
-          type: '3'
-        }
-      })
-    },
     back () {
       this.$route.meta.isBack = true
       this.$back({
-        path: '/appStart',
+        path: '/appIndex',
         query: {
-          type: '3'
+          menuName: 'course'
         }
       })
     },
-    getMenu () {
-      this.$route.meta.isBack = false
-      this.$push({
-        path: '/appMenu',
-        query: {
-          type: '3'
-        }
-      })
+    getNewDate () {
+      let weeks = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
+      let date = new Date()
+      let year = date.getFullYear()
+      let month = date.getMonth() + 1
+      let day = date.getDate()
+      let week = date.getDay()
+      this.data.newDate = year + '年' + month + '月' + day + '日'
+      this.data.newWeek = weeks[week]
+    },
+    getSet () {
+      if (this.data.userLogin) {
+        this.$route.meta.isBack = false
+        this.$push({
+          path: '/appSet',
+          query: {
+            type: '3'
+          }
+        })
+      } else {
+        this.userLogin('/appSet?type=3')
+      }
+    },
+    quit () {
+      if (this.data.userLogin) {
+        this.data.userLogin = ''
+        localStorage.setItem('userLogin', '')
+        this.data.user = {}
+        Modal.warning({
+          title: '信息提示',
+          content: '成功退出登录！',
+          okText: '确定',
+          onOk: () => {
+          }
+        })
+      } else {
+        Modal.warning({
+          title: '信息提示',
+          content: '已经退出登录！',
+          okText: '确定',
+          onOk: () => {
+          }
+        })
+      }
     }
   },
   components: {
-    Button, Popup
+    Button, Popup, appHeader, Row, Col, Modal, Icon, CellGroup, Cell
   }
 }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @import "stylus/appMember.styl"
 </style>

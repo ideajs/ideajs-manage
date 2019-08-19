@@ -115,8 +115,17 @@ export default {
       this.currentValue = val
     },
     currentValue (newVal) {
-      if (this.max && newVal && newVal.length > this.max) {
-        this.currentValue = newVal.slice(0, this.max)
+      if (this.max && newVal) {
+        let len = newVal.replace(/\n/g, 'aa').length
+        if (len > this.max) {
+          let newLines = newVal.match(/\n/g).length
+          this.currentValue = newVal.slice(0, this.max - newLines)
+          this.$nextTick(() => {
+            if (this.autosize) {
+              this.updateAutosize()
+            }
+          })
+        }
       }
       this.$emit('input', this.currentValue)
       this.$emit('on-change', this.currentValue)
@@ -144,16 +153,18 @@ export default {
       }
     },
     labelStyles () {
+      const {$parent = {}} = this
       return {
-        width: this.$parent.labelWidth || (this.labelWidth + 'em'),
-        textAlign: this.$parent.labelAlign,
-        marginRight: this.$parent.labelMarginRight
+        width: $parent.labelWidth || (this.labelWidth + 'em'),
+        textAlign: $parent.labelAlign,
+        marginRight: $parent.labelMarginRight
       }
     },
     labelWidth () {
       return this.title.replace(/[^x00-xff]/g, '00').length / 2 + 1
     },
     labelClass () {
+      if (!this.$parent) return {}
       return {
         'vux-cell-justify': this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify'
       }

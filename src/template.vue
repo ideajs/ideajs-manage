@@ -3,10 +3,10 @@
 <template>
   <div class="appMenu">
     <div v-transfer-dom>
-      <popup v-model="show"></popup>
+      <popup v-model="showBack"></popup>
     </div>
     <appHeader :headerInfo="data.headerInfo"></appHeader>
-    <div class="">
+    <div class="container">
       <Button type="primary" round @click.active="back()">上一页</Button>
       <Button type="success" round @click.active="start()">下一页</Button>
     </div>
@@ -21,13 +21,13 @@
     name: 'appMenu',
     data () {
       return {
-        show: false,
+        showBack: false,
         data: {
           headerInfo: this.$route.meta
         }
       }
     },
-    mounted () {
+    created () {
       /*自定义顶部header两侧按钮事件+页面左右滑动事件*/
       this.$route.meta.header.leftFuc = this.back                 // header左侧返回按钮事件
       this.$route.meta.header.rightFuc = this.getMenu             // header右侧菜单按钮事件

@@ -53,6 +53,8 @@ input, textarea
   -moz-user-select: auto                        /*火狐*/
   -ms-user-select: auto                         /*IE10*/
   user-select: auto                             /*禁止选中文本*/
+  resize: none
+  border: 1px solid #F0C579
 button, a, input, select, img, textarea, *
 button:hover, a:hover, input:hover, select:hover, img:hover, textarea:hover, *:hover
 button:focus, a:focus, input:focus, select:focus, img:focus, textarea:focus, *:focus
@@ -68,6 +70,8 @@ a:link
   appearance: none!important                    /*取消默认样式*/
   -moz-appearance: none!important
   -webkit-appearance: none!important
+a, a:hover, a:focus, a:active, a:visited
+  color: #d38b2c
 table
   border-collapse: collapse
   border-spacing: 0
@@ -85,6 +89,8 @@ textarea:-ms-input-placeholder
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder
   color: #C1C1C1
+img
+  background: #BFBFBF
 
 /*重置iVew样式*/
 .ivu-btn,
@@ -116,7 +122,7 @@ button:hover,
 button[disabled],
 input[type=button]:hover,
 input[type=button][disabled]
-  background: linear-gradient(rgb(155,155,155), rgb(236,236,236))
+  background: linear-gradient(#666, #ccc)
 
 .ivu-btn-primary
   background: linear-gradient(rgb(29, 98, 240), rgb(25, 213, 253))
@@ -129,30 +135,129 @@ input[type=button][disabled]
 .ivu-btn-info
   background: linear-gradient(rgb(59,188,246), rgb(147,222,255))
 .ivu-btn-default,
-.ivu-btn-dashed
-  color: #888
-  background: linear-gradient(rgb(240,240,240), rgb(250,250,250))
+.ivu-btn-dashed,
+.ivu-btn-text
+  color: #333
+  background: linear-gradient(rgb(210,210,210), rgb(220,220,220))
 .ivu-card-bordered
   box-shadow: 0 1px 6px rgba(0,0,0,0.2) !important
 
+.ivu-modal
+  top: 26vh
+.ivu-modal-confirm-head
+  text-align: center
+  padding: 0
+.ivu-modal-confirm-body
+  padding-left: 0
+  text-align: center
+  word-wrap: break-word
+  word-break: break-all
+.ivu-modal-confirm-footer
+  text-align: center
+  >button
+    width: 40%
+.ivu-icon-ios-help-circle:before
+  content: "\F108"
 .ivu-input,
-.ivu-input-group-append, 
-.ivu-input-group-prepend, 
+.ivu-input-group-append,
+.ivu-input-group-prepend,
 .ivu-form-item-error .ivu-input,
-.ivu-form-item-error .ivu-input-group-append, 
+.ivu-form-item-error .ivu-input-group-append,
 .ivu-form-item-error .ivu-input-group-prepend
   border: 1px solid #E3E3EE
-.ivu-input-group-prepend, 
+.ivu-input-group-prepend,
 .ivu-form-item-error .ivu-input-group-prepend
   border-right: 0px solid #fff!important
-.ivu-input, 
+.ivu-input,
 .ivu-form-item-error .ivu-input
   box-shadow: 0 0 0 transparent!important
-  
+.ivu-drawer-header-inner
+  font-size: 2rem
+  text-align: center
+.ivu-drawer-body
+  padding: 5px
+.tabList
+  display: inline-block
+  width: 45%
+  height: 35px
+  line-height: 35px
+  box-shadow: 0px 0px 5px 2px #ebebeb
+  margin: 10px 2.5%
+  text-align: center
+  font-size: 1.3rem
+  border-radius: 5px
+  color: #f4f4f4
+.tabList:nth-child(1)
+  background: #E8692F
+.tabList:nth-child(2)
+  background: #E83A30
+.tabList:nth-child(3)
+  background: #E72F8C
+.tabList:nth-child(4)
+  background: #892FE8
+.tabList:nth-child(5)
+  background: #795A98
+.tabList:nth-child(6)
+  background: #2DE8BD
+.tabList:nth-child(7)
+  background: #31E749
+.tabList:nth-child(8)
+  background: #A4E82F
+.tabList:nth-child(9)
+  background: #AF5A5A
+.tabList:nth-child(10)
+  background: #E7B72F
+.tabList:nth-child(11)
+  background: #E88C30
+.tabList:nth-child(12)
+  background: #6AA205
+.tabList:nth-child(13)
+  background: #FFA4A4
+.tabList:nth-child(14)
+  background: #31C9E8
+.tabList:nth-child(15)
+  background: #F8BB00
+.tabList:nth-child(16)
+  background: #EE246D
+.tabList:nth-child(17)
+  background: #00B6BC
+.tabList:nth-child(18)
+  background: #AFCA63
+.tabList:nth-child(19)
+  background: #715296
+.tabList:nth-child(20)
+  background: #CEAF90
+.tabList:nth-child(21)
+  background: #BC93B3
+.tabList:nth-child(22)
+  background: #FDB812
+.tabList:nth-child(23)
+  background: #DA4F3A
+.tabList:nth-child(24)
+  background: #E75F53
+.tabList:nth-child(25)
+  background: #38946D
+.ivu-carousel
+  background: #ccc
+  height: 25vh!important
+  .ivu-carousel-item
+    img
+      width: 100%
+      height: 25vh!important
+.ivu-tabs-bar
+  margin-bottom: 0
+.ivu-tabs-ink-bar
+  background-color: rgb(211, 139, 44)
+.ivu-tabs-nav .ivu-tabs-tab-active,
+.ivu-tabs-nav .ivu-tabs-tab:hover
+  color: rgb(211, 139, 44)
+.ivu-form-item-error .ivu-input-group-append,
+.ivu-form-item-error .ivu-input-group-prepend
+  background-color: #f8f8f9
 /*重置滚动条样式*/
 ::-webkit-scrollbar                              /*滚动条整体样式*/
   width: 0px                                     /*高宽分别对应横竖滚动条的尺寸*/
-  height: 10px
+  height: 2px
 ::-webkit-scrollbar-thumb                        /*滚动条里面小方块*/
   border-radius: 10px
   -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2)
@@ -161,3 +266,97 @@ input[type=button][disabled]
   -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2)
   border-radius: 10px
   background: #EDEDED
+.ivu-form-item-error .ivu-input-group-append,
+.ivu-form-item-error .ivu-input-group-prepend,
+.ivu-input-group-prepend,
+.ivu-input-group-append,
+.ivu-input-group-large .ivu-input,
+.ivu-input-group-large>.ivu-input-group-append,
+.ivu-input-group-large>.ivu-input-group-prepend
+  background-color: #fff
+  border: none
+  input
+    height: 34px
+  span
+    position: relative
+    color: #000
+    top: 1px
+.ivu-icon
+  color: #d38b2c
+.ivu-form-item-error-tip
+  font-size: 1.2rem
+  width: 100%!important
+  margin: 0!important
+.ivu-modal-close
+  display: none
+.ivu-modal-header
+  color: #f60
+  text-align: center
+  i
+    font-size: 1.6rem
+  span
+    font-size: 1.5rem
+  .ivu-icon
+    margin-top: -4px
+.ivu-message
+  top: 100px!important
+  .ivu-message-notice-content
+    padding: 8px 8px 0
+    min-height: 33px
+    span
+      font-size: 1.2rem
+      color: #F00F0F
+  .ivu-icon
+    color: #f60
+  .ivu-message-notice-content-text
+    padding-right: 20px
+.ivu-modal-footer
+  >div
+    text-align: center
+    button
+      width: 40%
+.ivu-form-inline .ivu-form-item
+  width: 100%
+  margin-right: 0
+button
+  .ivu-icon
+    color: #fff
+.ivu-input-group
+  border-bottom: 1px solid #e3e3e3!important
+.ivu-modal-body
+  min-height: 200px
+  position: relative
+  .ivu-icon
+    font-size: 1.6rem
+    color: #f60
+.ivu-modal-body,
+.ivu-modal-confirm
+  padding: 0
+.ivu-modal-confirm-head
+  border-bottom: 1px solid #e3e3e3
+.ivu-modal-confirm-head-title
+  color: #f60
+.ivu-modal-confirm-body
+  min-height: 10.5rem
+  padding: 1.5rem
+.ivu-modal-confirm-footer
+  width: 100%
+  margin: 0
+  padding: 1rem 0
+  border-top: 1px solid #e3e3e3
+.ivu-tabs-nav
+  .ivu-tabs-tab
+    .ivu-icon
+      margin-right: 2px
+.ivu-modal-confirm-head-title
+  margin-left: 2px
+.x-unData
+  margin: 20px
+  text-align: center
+  >i
+    font-size: 8rem
+    color: #C3683A
+    border: 1px solid #C3683A
+    border-radius: 100%
+    padding: 10px
+    margin: 10px

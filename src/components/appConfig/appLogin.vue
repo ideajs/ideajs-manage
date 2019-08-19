@@ -2,19 +2,19 @@
 <template>
   <div class="appLogin">
     <div v-transfer-dom>
-      <popup v-model="show"></popup>
+      <popup v-model="showBack"></popup>
     </div>
+    <appHeader :headerInfo="data.headerInfo"></appHeader>
     <div class="container">
       <img width="100px" height="100px" class="headerFace" :src="data.headerFace" />
-
-      <Form ref="formInline" :model="data.formInline" :rules="data.ruleInline" inline>
-        <FormItem prop="user">
-          <Input type="text" size="large" v-model="data.formInline.user" clearable placeholder="用户名/手机号">
-          <Icon type="ios-person" slot="prepend"></Icon>
+      <Form ref="formData" :model="data.formData" inline>
+        <FormItem prop="phone">
+          <Input number :maxlength="11" size="large" v-model="data.formData.phone" clearable placeholder="请输入手机号(必填)">
+          <Icon type="md-phone-portrait" slot="prepend"></Icon>
           </Input>
         </FormItem>
-        <FormItem prop="password">
-          <Input type="password" size="large" v-model="data.formInline.password" clearable placeholder="密码">
+        <FormItem prop="pass">
+          <Input type="password" :maxlength="12" size="large" v-model="data.formData.pass" clearable placeholder="密码(6-12位英文、数字)">
           <Icon type="ios-lock" slot="prepend"></Icon>
           </Input>
         </FormItem>
@@ -27,66 +27,136 @@
   </div>
 </template>
 <script>
-  import { Button, Input, Form, FormItem, Icon } from 'iview'
-  import { Popup } from 'vux'
-  import appCaptcha from'@/components/appConfig/appCaptcha.vue'
-  import headerFace001 from '../../common/images/small-icon/headerFace001.png'
+import { Button, Input, Form, FormItem, Icon, Modal, Message } from 'iview'
+import { Popup } from 'vux'
+import appHeader from'@/components/appConfig/appHeader.vue'
+import appCaptcha from'@/components/appConfig/appCaptcha.vue'
+import headerFace001 from '@/common/images/small-icon/headerFace001.png'
 export default {
   name: 'appLogin',
   data () {
     return {
-      show: false,
+      showBack: false,
       data: {
         headerFace: headerFace001,
-        formInline: {
+        headerInfo: this.$route.meta,
+        formData: {
           user: '',
-          password: ''
+          phone: '',
+          pass: ''
         },
-        ruleInline: {
-          user: [
-            { required: true, message: '用户名错误', trigger: 'blur' },
-            { pattern: /^\w{6,18}$/, message: '用户名应为6-18位英文、数字和_', trigger: 'blur' }
-          ],
-          phone: [
-            { required: true, message: '手机号错误', trigger: 'blur' },
-            { pattern: /^1[34578]\d{9}$/, message: '手机号应为11位数字', trigger: 'blur' }
-          ],
-          password: [
-            { required: true, message: '密码错误', trigger: 'blur' },
-            { pattern: /^\w{6,18}$/, message: '密码应为6-18位英文、数字和_', trigger: 'blur' }
-          ]
+        formRule: {
+          user: {
+            pattern: /^[a-zA-Z0-9\u4E00-\u9FA5]{2,30}$/,
+            message: '姓名应为2-30位英文、数字、中文等'
+          },
+          phone: {
+            pattern: /^1[1-9]\d{9}$/,
+            message: '手机号应为11位数字'
+          },
+          pass: {
+            pattern: /^[a-zA-Z0-9]{6,12}$/,
+            message: '密码应为6-12位英文、数字'
+          }
         },
         appCaptchaInfo: {
-
         }
       }
     }
   },
-  mounted () {
+  created () {
+    this.data.fromUrl = this.$route.query.fromUrl || '/appMember'
+    this.data.toUrl = this.$route.query.toUrl
     this.data.appCaptchaInfo.start = this.start
+    this.$route.meta.header.leftFuc = this.back                 // header左侧返回按钮事件
   },
   methods: {
+    back () {
+      Message.destroy()
+      this.$route.meta.isBack = true
+      this.$back({
+        path: this.data.fromUrl,
+        query: {
+          type: '3'
+        }
+      })
+    },
     start () {
+      Message.destroy()
+      let rule = this.data.formRule
+      // if (!rule.user.pattern.test(this.data.formData.user)) {
+      //   Message.info({
+      //     content: rule.user.message + '，请重新输入！',
+      //     duration: 6,
+      //     closable: true
+      //   })
+      //   return
+      // }
+      if (!rule.phone.pattern.test(this.data.formData.phone)) {
+        Message.info({
+          content: rule.phone.message + '，请重新输入！',
+          duration: 6,
+          closable: true
+        })
+        return
+      }
+      if (!rule.pass.pattern.test(this.data.formData.pass)) {
+        Message.info({
+          content: rule.pass.message + '，请重新输入！',
+          duration: 6,
+          closable: true
+        })
+        return
+      }
+      let usermsg = JSON.parse(localStorage.getItem(this.data.formData.phone))
+      if (usermsg) {
+        if (usermsg.userInfo.pass === this.data.formData.pass) {
+          localStorage.setItem('userLogin', this.data.formData.phone)
+          document.getElementById('msg').innerHTML = ''
+          if (this.data.toUrl) {
+            this.forward()
+          } else {
+            this.back()
+          }
+        } else {
+          Message.info({
+            content: '密码错误，请重试',
+            duration: 6,
+            closable: true
+          })
+        }
+      } else {
+        Message.info({
+          content: '手机号：' + this.data.formData.phone + '错误，请重试！',
+          duration: 6,
+          closable: true
+        })
+      }
+    },
+    forward () {
+      Message.destroy()
       this.$route.meta.isBack = false
-      this.$push({
-        path: '/appIndex',
+      this.$back({
+        path: this.data.toUrl,
         query: {
           type: '3'
         }
       })
     },
     onRegiste () {
+      Message.destroy()
       this.$route.meta.isBack = false
       this.$push({
         path: '/appRegiste',
         query: {
-          type: '3'
+          fromUrl: this.data.fromUrl,
+          toUrl: this.data.toUrl
         }
       })
     }
   },
   components: {
-    appCaptcha, Button, Input, Form, FormItem, Icon, Popup
+    appHeader, appCaptcha, Button, Input, Form, FormItem, Icon, Popup, Modal, Message
   }
 }
 </script>

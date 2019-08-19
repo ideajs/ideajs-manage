@@ -1,4 +1,4 @@
-/*Created by macmzon@163.com*/
+// Created by macmzon@163.com
 
 export function drawCaptcha (opts) {
   const l = 40,                   // 滑块边长
@@ -21,7 +21,7 @@ export function drawCaptcha (opts) {
 
   function createImg (onload) {
     const img = createElement('img')
-    img.crossOrigin = "Anonymous"
+    img.crossOrigin = 'Anonymous'
     img.onload = onload
     img.onerror = () => {
       img.src = getRandomImg()
@@ -225,7 +225,7 @@ export function drawCaptcha (opts) {
       const left = parseInt(this.block.style.left)
       return {
         spliced: Math.abs(left - this.x) < 10,
-        verified: stddev !== 0,                 // 简单验证下拖动轨迹，为零时表示Y轴上下没有波动，可能非人为操作
+        verified: stddev !== 0                 // 简单验证下拖动轨迹，为零时表示Y轴上下没有波动，可能非人为操作
       }
     }
 
@@ -241,6 +241,3 @@ export function drawCaptcha (opts) {
   }
   new drawCaptcha(opts).init()
 }
-
-
-

@@ -7,7 +7,10 @@
         <Icon :type="headerInfo.header.left" size="24" @click="headerInfo.header.leftFuc()" />
       </div>
       <!--header标题title-->
-      <div><span>{{headerInfo.title}}</span></div>
+      <div @click="goIndex()">
+        <Icon class="p-home" size="20" type="md-home" />
+        <span>{{headerInfo.title}}</span>
+      </div>
       <!--header右侧按钮right-->
       <div>
         <Icon :type="headerInfo.header.right" size="24" @click="headerInfo.header.rightFuc()" />
@@ -17,27 +20,34 @@
 </template>
 
 <script>
-  import { Icon } from 'iview'
-  export default {
-    name: 'appHeader',
-    props: {
-      headerInfo: {}
-    },
-    data () {
-      return {
-      }
-    },
-    mounted () {
-    },
-    methods: {
-      start () {
-        console.log('start')
-      }
-    },
-    components: {
-      Icon
+import { Icon, Message } from 'iview'
+export default {
+  name: 'appHeader',
+  props: {
+    headerInfo: {}
+  },
+  data () {
+    return {
     }
+  },
+  created () {
+    Message.destroy()
+  },
+  methods: {
+    goIndex () {
+      this.$route.meta.isBack = true
+      this.$back({
+        path: '/appIndex',
+        query: {
+          menuName: 'course'
+        }
+      })
+    }
+  },
+  components: {
+    Icon, Message
   }
+}
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">

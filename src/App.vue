@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import {mapState} from 'vuex'
+import {mapState} from 'vuex'
 export default {
   name: 'App',
   computed: {
@@ -28,7 +28,7 @@ export default {
       }
     }
   },
-  mounted () {
+  created () {
   },
   methods: {
     onSwipeLeft () { // 页面左滑-下一页
@@ -44,6 +44,45 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "./common/stylus/reset.styl"
-  @import "components/appStylus/App.styl"
+  @import "common/stylus/reset.styl"
+.app
+  width: 100%
+  height: 100vh
+  background: #fff
+  >div
+    width: 100%
+    height: 100vh
+    overflow-y: auto
+    touch-action: pan-y!important
+    >div
+      background: #F2FCF0
+      height: 100vh
+      width: 100%
+      >.container
+        padding-top: 5.5vh
+        margin: 0 auto
+  .slide-out-enter-active,
+  .slide-out-leave-active,
+  .slide-in-enter-active,
+  .slide-in-leave-active
+    will-change: transform
+    transition: all 300ms
+    position: absolute
+    height: 100%
+    width: 100%
+    perspective: 1000
+    backface-visibility: hidden
+  .slide-out-enter
+    opacity: 0
+    transform: translate3d(-100%, 0, 0)
+  .slide-out-leave-active
+    opacity: 0
+    transform: translate3d(100%, 0, 0)
+  .slide-in-enter
+    opacity: 0
+    transform: translate3d(100%, 0, 0)
+  .slide-in-leave-active
+    opacity: 0
+    transform: translate3d(-100%, 0, 0)
+
 </style>

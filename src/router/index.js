@@ -1,255 +1,264 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const AppHello = () => import('@/components/appStart')
 const AppStart = () => import('@/components/appStart')
 const AppRegiste = () => import('@/components/appConfig/appRegiste')
 const AppLogin = () => import('@/components/appConfig/appLogin')
-const AppMenu = () => import('@/components/appConfig/appMenu')
 const AppSet = () => import('@/components/appConfig/appSet')
 const AppCaptcha = () => import('@/components/appConfig/appCaptcha')
-const AppScan = () => import('@/components/appConfig/appScan')
 const AppBarCode = () => import('@/components/appConfig/appBarCode')
-const AppHeadPhoto = () => import('@/components/appConfig/appHeadPhoto')
+const AppResetPass = () => import('@/components/appConfig/appResetPass')
+const AppPhotoImg = () => import('@/components/appConfig/appPhotoImg')
 
 const AppIndex = () => import('@/components/appMain/appIndex')
-
-// post请求：this.$post(url, param, success, fail, load, error, http)
-// get请求：this.$get(url, success, fail, load, error, http)
-// 项目外页面跳转：this.$goURL(url)
-// 项目内页面跳转push：this.$push(param)
-// 项目内页面返回back：this.$back(param)
+const AppMember = () => import('@/components/appMain/appMember')
 
 /*
-header参数说明：
-ios-contact会员按钮，md-menu菜单按钮，ios-arrow-back左侧返回按钮，
+title 页面标题，
+
+header 参数说明：
+left或right参数设定：ios-contact 会员按钮，md-menu 菜单按钮，ios-arrow-back 左侧返回按钮，
+left 左边按钮，leftFuc 左边按钮点击事件，right 右边按钮，rightFuc右边按钮点击事件，
+
+touch 参数说明：
+leftFuc 左滑页面事件-下一页，rightFuc 右滑页面事件-上一页，
+
+isBack 判断是否返回上一页，scrollToTop 是否滚动到顶部，isReload 控制是否刷新页面，needLogin 进入页面需要登录
 */
 
 export default new Router({
   base: '',
-  transitionOnLoad:true,
+  transitionOnLoad: true,
   routes: [{
     path: '',
-    name: 'AppHello',
-    component: AppHello,
+    name: 'AppStart',
+    component: AppStart,
     meta: {
-      title: '欢迎',                                 // 页面标题
+      title: '欢迎',
       header: {
-        left: '',                                    // header左边按钮
-        leftFuc: (fuc) => {fuc && fuc()},            // header左边按钮点击事件
-        right: '',                                   // header右边按钮
-        rightFuc: (fuc) => {fuc && fuc()}            // header右边按钮点击事件
+        left: '',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: '',
+        rightFuc: (fuc) => { fuc && fuc() }
       },
       touch: {
-        leftFuc: (fuc) => {fuc && fuc()},            // vue-touch左滑页面事件-下一页
-        rightFuc: (fuc) => {fuc && fuc()}            // vue-touch右滑页面事件-上一页
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
       },
-      isBack: false                                  // 判断是否返回上一页
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
     }
   }, {
     path: '/appStart',
     name: 'AppStart',
     component: AppStart,
     meta: {
-      title: '欢迎',                                 // 页面标题
+      title: '欢迎',
       header: {
-        left: '',                                    // header左边按钮
-        leftFuc: (fuc) => {fuc && fuc()},            // header左边按钮点击事件
-        right: '',                                   // header右边按钮
-        rightFuc: (fuc) => {fuc && fuc()}            // header右边按钮点击事件
+        left: '',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: '',
+        rightFuc: (fuc) => { fuc && fuc() }
       },
       touch: {
-        leftFuc: (fuc) => {fuc && fuc()},            // vue-touch左滑页面事件-下一页
-        rightFuc: (fuc) => {fuc && fuc()}            // vue-touch右滑页面事件-上一页
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
       },
-      isBack: false                                  // 判断是否返回上一页
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
     }
   }, {
     path: '/appRegiste',
     name: 'AppRegiste',
     component: AppRegiste,
     meta: {
-      title: '注册',                                  // 页面标题
+      title: '注册',
       header: {
-        left: '',                                     // header左边按钮
-        leftFuc: (fuc) => {fuc && fuc()},             // header左边按钮点击事件
-        right: '',                                    // header右边按钮
-        rightFuc: (fuc) => {fuc && fuc()}             // header右边按钮点击事件
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: '',
+        rightFuc: (fuc) => { fuc && fuc() }
       },
       touch: {
-        leftFuc: (fuc) => {fuc && fuc()},             // vue-touch左滑页面事件-下一页
-        rightFuc: (fuc) => {fuc && fuc()}             // vue-touch右滑页面事件-上一页
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
       },
-      isBack: false                                   // 判断是否返回上一页
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
     }
   }, {
     path: '/appLogin',
     name: 'AppLogin',
     component: AppLogin,
     meta: {
-      title: '登录',                                  // 页面标题
+      title: '登录',
       header: {
-        left: '',                                     // header左边按钮
-        leftFuc: (fuc) => {fuc && fuc()},             // header左边按钮点击事件
-        right: '',                                    // header右边按钮
-        rightFuc: (fuc) => {fuc && fuc()}             // header右边按钮点击事件
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: '',
+        rightFuc: (fuc) => { fuc && fuc() }
       },
       touch: {
-        leftFuc: (fuc) => {fuc && fuc()},              // vue-touch左滑页面事件-下一页
-        rightFuc: (fuc) => {fuc && fuc()}              // vue-touch右滑页面事件-上一页
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
       },
-      isBack: false                                   // 判断是否返回上一页
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
     }
   }, {
     path: '/appIndex',
     name: 'AppIndex',
     component: AppIndex,
     meta: {
-      title: '首页',                                   // 页面标题
+      title: '首页',
       header: {
-        left: 'md-menu',                                  // header左边按钮
-        leftFuc: (fuc) => {
-          fuc && fuc()
-        },                                             // header左边按钮点击事件
-        right: 'ios-contact',                              // header右边按钮
-        rightFuc: (fuc) => {
-          fuc && fuc()
-        }                                              // header右边按钮点击事件
+        left: 'md-menu',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: 'ios-contact',
+        rightFuc: (fuc) => { fuc && fuc() }
       },
       touch: {
-        leftFuc: (fuc) => {fuc && fuc()},              // vue-touch左滑页面事件-下一页
-        rightFuc: (fuc) => {fuc && fuc()}              // vue-touch右滑页面事件-上一页
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
       },
-      isBack: false,                                   // 判断是否返回上一页
-      scrollToTop: true,                               // 是否滚动到顶部
-      isReload: false,                                 // 控制是否刷新页面
-      needLogin: true                                  // 进入页面需要登录
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
     }
   }, {
-    path: '/appMenu',
-    name: 'AppMenu',
-    component: AppMenu,
+    path: '/appMember',
+    name: 'AppMember',
+    component: AppMember,
     meta: {
-      title: '菜单',                                   // 页面标题
+      title: '会员',
       header: {
-        left: 'ios-arrow-back',                            // header左边按钮
-        leftFuc: (fuc) => {fuc && fuc()},              // header左边按钮点击事件
-        right: 'md-menu',                                 // header右边按钮
-        rightFuc: (fuc) => {fuc && fuc()}              // header右边按钮点击事件
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: 'ios-settings',
+        rightFuc: (fuc) => { fuc && fuc() }
       },
       touch: {
-        leftFuc: (fuc) => {fuc && fuc()},              // vue-touch左滑页面事件-下一页
-        rightFuc: (fuc) => {fuc && fuc()}              // vue-touch右滑页面事件-上一页
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
       },
-      isBack: false,                                   // 判断是否返回上一页
-      scrollToTop: true,                               // 是否滚动到顶部
-      isReload: false,                                 // 控制是否刷新页面
-      needLogin: true                                  // 进入页面需要登录
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
     }
   }, {
     path: '/appSet',
     name: 'AppSet',
     component: AppSet,
     meta: {
-      title: '设置',                                   // 页面标题
+      title: '设置',
       header: {
-        left: 'ios-arrow-back',                            // header左边按钮
-        leftFuc: (fuc) => {fuc && fuc()},              // header左边按钮点击事件
-        right: 'md-menu',                                 // header右边按钮
-        rightFuc: (fuc) => {fuc && fuc()}              // header右边按钮点击事件
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: '',
+        rightFuc: (fuc) => { fuc && fuc() }
       },
       touch: {
-        leftFuc: (fuc) => {fuc && fuc()},              // vue-touch左滑页面事件-下一页
-        rightFuc: (fuc) => {fuc && fuc()}              // vue-touch右滑页面事件-上一页
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
       },
-      isBack: false,                                   // 判断是否返回上一页
-      scrollToTop: true,                               // 是否滚动到顶部
-      isReload: false,                                 // 控制是否刷新页面
-      needLogin: true                                  // 进入页面需要登录
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
+    }
+  }, {
+    path: '/appPhotoImg',
+    name: 'AppPhotoImg',
+    component: AppPhotoImg,
+    meta: {
+      title: '图片上传',
+      header: {
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: '',
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      touch: {
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
+    }
+  }, {
+    path: '/appResetPass',
+    name: 'AppResetPass',
+    component: AppResetPass,
+    meta: {
+      title: '密码重置',
+      header: {
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: '',
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      touch: {
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
     }
   }, {
     path: '/appCaptcha',
     name: 'AppCaptcha',
     component: AppCaptcha,
     meta: {
-      title: '验证',                                   // 页面标题
+      title: '验证',
       header: {
-        left: 'ios-arrow-back',                            // header左边按钮
-        leftFuc: (fuc) => {fuc && fuc()},              // header左边按钮点击事件
-        right: 'md-menu',                                 // header右边按钮
-        rightFuc: (fuc) => {fuc && fuc()}              // header右边按钮点击事件
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: 'md-menu',
+        rightFuc: (fuc) => { fuc && fuc() }
       },
       touch: {
-        leftFuc: (fuc) => {fuc && fuc()},              // vue-touch左滑页面事件-下一页
-        rightFuc: (fuc) => {fuc && fuc()}              // vue-touch右滑页面事件-上一页
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
       },
-      isBack: false,                                   // 判断是否返回上一页
-      scrollToTop: true,                               // 是否滚动到顶部
-      isReload: false,                                 // 控制是否刷新页面
-      needLogin: true                                  // 进入页面需要登录
-    }
-  }, {
-    path: '/appScan',
-    name: 'AppScan',
-    component: AppScan,
-    meta: {
-      title: '扫描',                                   // 页面标题
-      header: {
-        left: 'ios-arrow-back',                            // header左边按钮
-        leftFuc: (fuc) => {fuc && fuc()},              // header左边按钮点击事件
-        right: 'md-menu',                                 // header右边按钮
-        rightFuc: (fuc) => {fuc && fuc()}              // header右边按钮点击事件
-      },
-      touch: {
-        leftFuc: (fuc) => {fuc && fuc()},              // vue-touch左滑页面事件-下一页
-        rightFuc: (fuc) => {fuc && fuc()}              // vue-touch右滑页面事件-上一页
-      },
-      isBack: false,                                   // 判断是否返回上一页
-      scrollToTop: true,                               // 是否滚动到顶部
-      isReload: false,                                 // 控制是否刷新页面
-      needLogin: true                                  // 进入页面需要登录
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
     }
   }, {
     path: '/appBarCode',
     name: 'AppBarCode',
     component: AppBarCode,
     meta: {
-      title: '二维码',                                   // 页面标题
+      title: '二维码',
       header: {
-        left: 'ios-arrow-back',                            // header左边按钮
-        leftFuc: (fuc) => {fuc && fuc()},              // header左边按钮点击事件
-        right: 'md-menu',                                 // header右边按钮
-        rightFuc: (fuc) => {fuc && fuc()}              // header右边按钮点击事件
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: 'md-menu',
+        rightFuc: (fuc) => { fuc && fuc() }
       },
       touch: {
-        leftFuc: (fuc) => {fuc && fuc()},              // vue-touch左滑页面事件-下一页
-        rightFuc: (fuc) => {fuc && fuc()}              // vue-touch右滑页面事件-上一页
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
       },
-      isBack: false,                                   // 判断是否返回上一页
-      scrollToTop: true,                               // 是否滚动到顶部
-      isReload: false,                                 // 控制是否刷新页面
-      needLogin: true                                  // 进入页面需要登录
-    }
-  }, {
-    path: '/appHeadPhoto',
-    name: 'AppHeadPhoto',
-    component: AppHeadPhoto,
-    meta: {
-      title: '头像',                                   // 页面标题
-      header: {
-        left: 'ios-arrow-back',                            // header左边按钮
-        leftFuc: (fuc) => {fuc && fuc()},              // header左边按钮点击事件
-        right: 'md-menu',                                 // header右边按钮
-        rightFuc: (fuc) => {fuc && fuc()}              // header右边按钮点击事件
-      },
-      touch: {
-        leftFuc: (fuc) => {fuc && fuc()},              // vue-touch左滑页面事件-下一页
-        rightFuc: (fuc) => {fuc && fuc()}              // vue-touch右滑页面事件-上一页
-      },
-      isBack: false,                                   // 判断是否返回上一页
-      scrollToTop: true,                               // 是否滚动到顶部
-      isReload: false,                                 // 控制是否刷新页面
-      needLogin: true                                  // 进入页面需要登录
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
     }
   }]
 })

@@ -2,75 +2,113 @@
 <template>
   <div class="appRegiste">
     <div v-transfer-dom>
-      <popup v-model="show"></popup>
+      <popup v-model="showBack"></popup>
     </div>
+    <appHeader :headerInfo="data.headerInfo"></appHeader>
     <div class="container">
-      <Form ref="formInline" :model="data.formInline" :rules="data.ruleInline" inline>
+      <Form ref="formData" :model="data.formData.userInfo" inline>
         <FormItem prop="user">
-          <Input type="text" size="large" v-model.trim="data.formInline.user" clearable placeholder="用户名 (6-18位英文、数字)">
+          <Input type="text" :maxlength="30" size="large" v-model.trim="data.formData.userInfo.user" clearable placeholder="请输入用户名(必填)">
           <Icon type="ios-person" slot="prepend"></Icon>
           </Input>
         </FormItem>
         <FormItem prop="phone">
-          <Input class="phone" type="text" :maxlength="11" size="large" v-model.trim="data.formInline.phone" clearable placeholder="手机号 (必填)">
+          <Input class="phone" number :maxlength="11" size="large" v-model.trim="data.formData.userInfo.phone" clearable placeholder="请输入手机号(必填)">
           <Icon type="md-phone-portrait" slot="prepend"></Icon>
           </Input>
           <!-- <Button class="phoneCode" type="primary" @click="postCode()">发送验证码</Button> -->
         </FormItem>
-        <FormItem prop="email">
-          <Input type="email" size="large" v-model.trim="data.formInline.email" clearable placeholder="邮箱 (必填)">
-          <Icon type="ios-mail" slot="prepend"></Icon>
-          </Input>
-        </FormItem>
-        <FormItem prop="password">
-          <Input type="password" size="large" v-model.trim="data.formInline.password" clearable placeholder="密码 (6-18位英文、数字)">
+        <FormItem prop="pass">
+          <Input type="password" :maxlength="12" size="large" v-model.trim="data.formData.userInfo.pass" clearable placeholder="设置密码(6-12位英文、数字)">
           <Icon type="ios-lock" slot="prepend"></Icon>
           </Input>
         </FormItem>
       </Form>
       <appCaptcha :appCaptchaInfo="data.appCaptchaInfo"></appCaptcha>
       <div class="onLogin">
-        <span>已注册？马上去</span><span @click="onLogin">登录</span>
+        <span>已注册？马上去</span><span @click="back">登录</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import { Button, Input, Form, FormItem, Icon } from 'iview'
-  import { Popup } from 'vux'
-  import appCaptcha from'@/components/appConfig/appCaptcha.vue'
-  import headerFace001 from '../../common/images/small-icon/headerFace001.png'
+import { Button, Input, Form, FormItem, Icon, Modal, Message } from 'iview'
+import { Popup } from 'vux'
+import appHeader from'@/components/appConfig/appHeader.vue'
+import appCaptcha from'@/components/appConfig/appCaptcha.vue'
+import headerFace001 from '@/common/images/small-icon/headerFace001.png'
 export default {
   name: 'appRegiste',
   data () {
     return {
-      show: false,
+      showBack: false,
       data: {
+        user: {},
         headerFace: headerFace001,
-        formInline: {
-          user: '',
-          phone: '',
-          email: '',
-          password: ''
+        headerInfo: this.$route.meta,
+        formData: {
+          userInfo: {
+            type: ['家人'],           // 朋友圈类型
+            id: new Date().getTime(), // 学号
+            headImg: '',              // 头像
+            user: '',                 // 用户名
+            sex: ['男'],              // 性别
+            birthday: '',             // 生日
+            label: '',                // 标签
+            phone: '',                // 手机号
+            weixin: '',               // 微信
+            qq: '',                   // QQ
+            pass: '',                 // 通行证
+            company: '',              // 公司
+            work: '',                 // 职业
+            title: '',                // 职称
+            email: '',                // 邮箱
+            address: '',              // 地址
+            sign: ''                  // 签名
+          },
+          course: {},               // 已激活课程
+          collectEnWords: {},       // 英语词汇收藏
+          learn: {},                // 在学小课程
+          money: {                  // 钱包
+            total: '0.00',          // 充值总额
+            balance: '0.00',        // 余额
+            list: []                // 充值历史记录
+          },
+          jifen: 0,                 // 课程积分(1元兑换1积分)
+          order: {                 // 订单
+            new: [],               // 新订单
+            hisroty: [],           // 历史订单
+            question: []           // 问题订单
+          },
+          prove: {                 // 认证
+            name: '',              // 姓名
+            idCode: '',            // 身份证号码
+            idPhotoA: '',           // 身份证正面照片
+            idPhotoB: '',           // 身份证背面照片
+            status: '0',           // 认证状态，0 未认证，1 认证失败，2 认证成功
+            error: '',             // 认证失败原因
+            date: ''               // 认证成功日期
+          },
+          friends: [],              // 朋友圈
+          message: [],              // 消息
+          video: [],                // 视频课程
+          chat: [],                 // 聊天
+          kefu: []                  // 客服聊天
         },
-        ruleInline: {
-          user: [
-            { required: true, message: '用户名错误', trigger: 'blur' },
-            { pattern: /^\w{6,18}$/, message: '用户名应为6-18位英文、数字和_', trigger: 'blur' }
-          ],
-          phone: [
-            { required: true, message: '手机号错误', trigger: 'blur' },
-            { pattern: /^1[34578]\d{9}$/, message: '手机号应为11位数字', trigger: 'blur' }
-          ],
-          email: [
-            { required: true, message: '邮箱错误', trigger: 'blur' },
-            { pattern: /^([a-zA-Z0-9]+[_|\-|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\-|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/, message: '邮箱格式应为xx@xx.com等', trigger: 'blur' }
-          ],
-          password: [
-            { required: true, message: '密码错误', trigger: 'blur' },
-            { pattern: /^\w{6,18}$/, message: '密码应为6-18位英文、数字和_', trigger: 'blur' }
-          ]
+        formRule: {
+          user: {
+            pattern: /^[a-zA-Z0-9\u4E00-\u9FA5]{2,30}$/,
+            message: '姓名应为2-30位英文、数字、中文等'
+          },
+          phone: {
+            pattern: /^1[1-9]\d{9}$/,
+            message: '手机号应为11位数字'
+          },
+          pass: {
+            pattern: /^[a-zA-Z0-9]{6,12}$/,
+            message: '密码应为6-12位英文、数字'
+          }
         },
         appCaptchaInfo: {
 
@@ -78,35 +116,83 @@ export default {
       }
     }
   },
-  mounted () {
+  created () {
+    this.data.fromUrl = this.$route.query.fromUrl || '/appMember'
+    this.data.toUrl = this.$route.query.toUrl
     this.data.appCaptchaInfo.start = this.start
+    this.$route.meta.header.leftFuc = this.back                 // header左侧返回按钮事件
   },
   methods: {
-    start () {
-      console.log(this.data.formInline)
-//      this.$route.meta.isBack = false
-//      this.$push({
-//        path: '/appIndex',
-//        query: {
-//          type: '3'
-//        }
-//      })
-    },
-    onLogin () {
-      this.$route.meta.isBack = false
+    back () {
+      Message.destroy()
+      this.$route.meta.isBack = true
       this.$push({
         path: '/appLogin',
         query: {
-          type: '3'
+          fromUrl: this.data.fromUrl,
+          toUrl: this.data.toUrl
+        }
+      })
+    },
+    start () {
+      Message.destroy()
+      let rule = this.data.formRule
+      if (!rule.user.pattern.test(this.data.formData.userInfo.user)) {
+        Message.info({
+          content: rule.user.message + '，请重新输入！',
+          duration: 6,
+          closable: true
+        })
+        return
+      }
+      if (!rule.phone.pattern.test(this.data.formData.userInfo.phone)) {
+        Message.info({
+          content: rule.phone.message + '，请重新输入！',
+          duration: 6,
+          closable: true
+        })
+        return
+      }
+      if (!rule.pass.pattern.test(this.data.formData.userInfo.pass)) {
+        Message.info({
+          content: rule.pass.message + '，请重新输入！',
+          duration: 6,
+          closable: true
+        })
+        return
+      }
+      if (localStorage.getItem(this.data.formData.userInfo.phone)) {
+        Message.info({
+          content: '手机号：' + this.data.formData.userInfo.phone + '已经注册！',
+          duration: 6,
+          closable: true
+        })
+        return
+      }
+      this.data.user =  this.data.formData          // 客户信息
+      localStorage.setItem(this.data.formData.userInfo.phone, JSON.stringify(this.data.user))
+      localStorage.setItem('userLogin', this.data.formData.userInfo.phone)
+      Modal.warning({
+        title: '信息提示',
+        content: '用户注册成功！',
+        okText: '确定',
+        onOk: () => {
+          this.$route.meta.isBack = true
+          this.$push({
+            path: '/appMember',
+            query: {
+              type: '3'
+            }
+          })
         }
       })
     },
     postCode () {
-      console.log('发送手机验证码')
+      // console.log('发送手机验证码')
     }
   },
   components: {
-    appCaptcha, Button, Input, Form, FormItem, Icon, Popup
+    appHeader, appCaptcha, Button, Input, Form, FormItem, Icon, Popup, Modal, Message
   }
 }
 </script>

@@ -1,4 +1,4 @@
-/*Created by macmzon@163.com*/
+// Created by macmzon@163.com
 // 公共方法库
 
 let Base64 = require('js-base64').Base64
@@ -118,26 +118,21 @@ export function objectToUrl (obj) {
 }
 
 // 获取用户登录信息
-export function getLocalInfo (item) {
-  let obj = JSON.parse(localStorage.getItem('userLocalInfo')) || {}
-  return item ? obj[item] : obj
+export function getLocalItem (item) {
+  let user = localStorage.getItem('userLogin')
+  let obj = JSON.parse(localStorage.getItem(user)) || {}
+  return (obj[item] || '')
 }
 
 // 设置用户登录信息
-export function setLocalInfo (key, val) {
-  let obj = JSON.parse(localStorage.getItem('userLocalInfo')) || {}
-  obj[key] = val
-  localStorage.setItem('userLocalInfo', JSON.stringify(obj))
+export function setLocalItem (item, val) {
+  let user = localStorage.getItem('userLogin')
+  let obj = JSON.parse(localStorage.getItem(user)) || {}
+  obj[item] = val
+  localStorage.setItem(user, JSON.stringify(obj))
 }
 
 // 登录退出登录 userLogin: 0未登录，1已登录
 export function userLogout () {
-  let obj = {
-    status: '0',
-    username: '', // 用户名
-    usercode: '', // 用户号
-    userpass: '', // 用户码
-    time: new Date().getTime() // 当前时间戳，毫秒
-  }
-  localStorage.setItem('userLogin', JSON.stringify(obj))
+  localStorage.setItem('userLogin', '')
 }

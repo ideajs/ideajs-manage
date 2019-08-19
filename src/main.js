@@ -7,7 +7,7 @@ import router from './router'
 import store from './store'
 import {routerSlide} from './router/routerSlide'
 import VueResource from 'vue-resource' // http请求插件
-import {HTTP_POST, HTTP_GET} from './common/js/isPost'
+import {HTTP_POST, HTTP_GET} from './common/js/isHttp'
 import {goURL, goPush, goBack, goReplace} from './common/js/isApi'
 import {sync} from 'vuex-router-sync'
 import VueTouch from 'vue-touch'
@@ -22,12 +22,23 @@ Vue.use(VueTouch, {name: 'v-touch'})
 Vue.directive('transfer-dom', TransferDom)
 
 Vue.config.productionTip = false
-Vue.prototype.$post = HTTP_POST // post请求：this.$post(url, param, success, fail, load, error, http)
-Vue.prototype.$get = HTTP_GET // get请求：this.$get(url, success, fail, load, error, http)
+Vue.prototype.$post = HTTP_POST // post请求：this.$post(url, param, success, fail, headers)
+Vue.prototype.$get = HTTP_GET // get请求：this.$get(url, success, fail, headers)
 Vue.prototype.$goURL = goURL // 项目外页面跳转：this.$goURL(url)
 Vue.prototype.$push = goPush // 项目内页面跳转push：this.$push(param)
 Vue.prototype.$back = goBack // 项目内页面返回back：this.$back(param)
-
+/*  提示框
+Modal.confirm({
+  title: '信息提示',
+  content: '尊敬的客户，您好！由于系统问题，暂时无法在线购买课程，请联系在线客服！',
+  okText: '确定',
+  cancelText: '取消',
+  onOk: () => {
+  },
+  onCancel: () => {
+  }
+})
+ */
 // 禁用浏览器返回历史页功能，可以让用户一直停留在当前页面
 window.onpopstate = () => {
   history.go(1)
@@ -64,4 +75,3 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
-
