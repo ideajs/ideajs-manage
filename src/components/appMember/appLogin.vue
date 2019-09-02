@@ -87,7 +87,7 @@ export default {
       // if (!rule.user.pattern.test(this.data.formData.user)) {
       //   Message.info({
       //     content: rule.user.message + '，请重新输入！',
-      //     duration: 6,
+      //     duration: 3,
       //     closable: true
       //   })
       //   return
@@ -95,7 +95,7 @@ export default {
       if (!rule.phone.pattern.test(this.data.formData.phone)) {
         Message.info({
           content: rule.phone.message + '，请重新输入！',
-          duration: 6,
+          duration: 3,
           closable: true
         })
         return
@@ -103,7 +103,7 @@ export default {
       if (!rule.pass.pattern.test(this.data.formData.pass)) {
         Message.info({
           content: rule.pass.message + '，请重新输入！',
-          duration: 6,
+          duration: 3,
           closable: true
         })
         return
@@ -121,14 +121,14 @@ export default {
         } else {
           Message.info({
             content: '密码错误，请重试',
-            duration: 6,
+            duration: 3,
             closable: true
           })
         }
       } else {
         Message.info({
           content: '手机号：' + this.data.formData.phone + '错误，请重试！',
-          duration: 6,
+          duration: 3,
           closable: true
         })
       }

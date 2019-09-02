@@ -11,7 +11,8 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "fix-memory-limit": "cross-env LIMIT=40096 increase-memory-limit"
   },
   "dependencies": {
     "echarts": "^4.2.0-rc.2",
@@ -60,6 +61,7 @@
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
+    "increase-memory-limit": "^1.0.7",
     "iview": "^3.4.2",
     "jest": "^22.0.4",
     "jest-serializer-vue": "^0.3.0",

@@ -18,7 +18,7 @@ vue.js项目安装插件列表：
   npm install stylus --save-dev
   npm install stylus-loader --save-dev
 
-5.安装vuex：Vuex 是 store（仓库）
+5. vuex：Vuex 是 store（仓库）
   npm install vuex --save
 
 6. vuex-router-sync：把vue-router的数据状态同步到vuex的state中
@@ -28,17 +28,20 @@ vue.js项目安装插件列表：
   npm install --save js-base64
   npm install --save js-md5
 
-8. Echarts图表：
+8. Echarts：图表：
   npm install echarts -S
 
-9. PDF文档阅读：
+9. PDFJS：文档阅读：
   npm isntall --save pdfjs-dist
 
-10. vue-touch 是手机端左右滑屏插件
+10. vue-touch：手机端左右滑屏插件
   npm install vue-touch@next --save
 
-11. vue-qr生成中间带图片的二维码
+11. vue-qr：生成中间带图片的二维码
   npm install vue-qr --save
 
-12. vue-cropper组件实现手机端头像图片裁切上传
+12. vue-cropper：组件实现手机端头像图片裁切上传
   npm install vue-cropper
+
+13. increase-memory-limit：增加node服务器内存限制
+  npm install increase-memory-limit --save-dev

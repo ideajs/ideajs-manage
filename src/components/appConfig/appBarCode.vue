@@ -9,8 +9,6 @@
       <div>
         <vue-qr :autoColor="false" :logoMargin="data.logoMargin" :colorDark="data.colorDark" :bgSrc="data.bgSrc" :logoSrc="data.logoSrc" :margin="0" :callback="getCodeInfo" :text="data.codeValue" :logoScale="data.logoScale" :size="data.codeSize"></vue-qr>
       </div>
-      <Button type="primary" round @click.active="back()">上一页</Button>
-      <Button type="success" round @click.active="start()">下一页</Button>
     </div>
   </div>
 </template>

@@ -1,8 +1,8 @@
 // Created by macmzon@163.com
 // 公共方法库
 
-let Base64 = require('js-base64').Base64
 import router from '../../router'
+let Base64 = require('js-base64').Base64
 
 // 项目外页面跳转方法
 export function goURL (url) {
@@ -79,11 +79,17 @@ export function formatDate (date, str) {
     return date
   }
 }
+// 正则处理日期字符串日期单数前面补齐0
+export function formatDateZero (date) {
+  // date = '2016-6-25'
+  return date.replace(/-(\d)(?!\d)/g, '-0$1')
+}
 
 // 获取日期并格式化8位
 export function getNowDate (date, str) {
   date = date || new Date()
-  date = date.getFullYear() + '' + ((date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : '0' + (date.getMonth() + 1)) + '' + (date.getDate() > 9 ? date.getDate() : '0' + date.getDate())
+  date = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+  date = date.replace(/-(\d)(?!\d)/g, '-0$1')
   if (str) {
     return date.replace(/^(\d{4})(\d{2})(\d{2})$/, '$1' + str + '$2' + str + '$3')
   } else {
@@ -95,7 +101,9 @@ export function getNowDate (date, str) {
 export function getHours (date, str) {
   date = date || new Date()
   str = str || ':'
-  return date.getHours() + str + (date.getMinutes() > 9 ? date.getMinutes() : '0' + date.getMinutes()) + str + (date.getSeconds() > 9 ? date.getSeconds() : '0' + date.getSeconds())
+  date = date.getHours() + str + date.getMinutes() + str + date.getSeconds()
+  date = date.replace(/-(\d)(?!\d)/g, str + '0$1')
+  return date
 }
 
 // url参数转对象 + 获取某个参数值(注：第一个字符非?)

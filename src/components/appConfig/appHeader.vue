@@ -4,7 +4,7 @@
     <div>
       <!--header左侧按钮left-->
       <div>
-        <Icon :type="headerInfo.header.left" size="24" @click="headerInfo.header.leftFuc()" />
+        <Icon :type="headerInfo.header.left" size="22" @click="headerInfo.header.leftFuc()" />
       </div>
       <!--header标题title-->
       <div @click="goIndex()">
@@ -13,7 +13,7 @@
       </div>
       <!--header右侧按钮right-->
       <div>
-        <Icon :type="headerInfo.header.right" size="24" @click="headerInfo.header.rightFuc()" />
+        <Icon :type="headerInfo.header.right" size="22" @click="headerInfo.header.rightFuc()" />
       </div>
     </div>
   </div>

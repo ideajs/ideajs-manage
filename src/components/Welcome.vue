@@ -24,7 +24,7 @@ export default {
   methods: {
     start () {
       this.$post('welcome', {name: 'welcome'}, {}, (res) => {
-        console.log(res)
+        // console.log(res)
       })
       setTimeout(() => {
         this.$push({

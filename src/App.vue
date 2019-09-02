@@ -55,12 +55,23 @@ export default {
     overflow-y: auto
     touch-action: pan-y!important
     >div
-      background: #F2FCF0
+      background: #FCFCFC
       height: 100vh
       width: 100%
       >.container
         padding-top: 5.5vh
         margin: 0 auto
+  .x-button
+      position: fixed
+      bottom: 10px
+      left: 25%
+      font-size: 1.6rem
+      color: #fff
+      box-shadow: 0 0 5px 0 #dbdbdb
+      width: 50%
+      padding: 2px 15px 3px 15px
+      text-align: center
+      border-radius: 5rem
   .slide-out-enter-active,
   .slide-out-leave-active,
   .slide-in-enter-active,

@@ -76,14 +76,11 @@ export default {
             list: []                // 充值历史记录
           },
           jifen: 0,                 // 课程积分(1元兑换1积分)
-          order: {                 // 订单
-            new: [],               // 新订单
-            hisroty: [],           // 历史订单
-            question: []           // 问题订单
-          },
+          order: [],                // 订单
           prove: {                 // 认证
             name: '',              // 姓名
             idCode: '',            // 身份证号码
+            phone: '',             // 手机号
             idPhotoA: '',           // 身份证正面照片
             idPhotoB: '',           // 身份证背面照片
             status: '0',           // 认证状态，0 未认证，1 认证失败，2 认证成功
@@ -140,7 +137,7 @@ export default {
       if (!rule.user.pattern.test(this.data.formData.userInfo.user)) {
         Message.info({
           content: rule.user.message + '，请重新输入！',
-          duration: 6,
+          duration: 3,
           closable: true
         })
         return
@@ -148,7 +145,7 @@ export default {
       if (!rule.phone.pattern.test(this.data.formData.userInfo.phone)) {
         Message.info({
           content: rule.phone.message + '，请重新输入！',
-          duration: 6,
+          duration: 3,
           closable: true
         })
         return
@@ -156,7 +153,7 @@ export default {
       if (!rule.pass.pattern.test(this.data.formData.userInfo.pass)) {
         Message.info({
           content: rule.pass.message + '，请重新输入！',
-          duration: 6,
+          duration: 3,
           closable: true
         })
         return
@@ -164,7 +161,7 @@ export default {
       if (localStorage.getItem(this.data.formData.userInfo.phone)) {
         Message.info({
           content: '手机号：' + this.data.formData.userInfo.phone + '已经注册！',
-          duration: 6,
+          duration: 3,
           closable: true
         })
         return

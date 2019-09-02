@@ -1,17 +1,25 @@
 // Created by macmzon@163.com
-.appPhotoImg
-  .PhotoTitle
+.appHeadPhoto
+  .curHeadPhoto,
+  .newHeadPhoto
+    background: #f3f3f3
+    padding: 0
+    border-radius: 100%!important
+    width: 100px!important
+    height: 100px!important
+    overflow: hidden
     text-align: center
-  .PhotoType
-    text-align: center
+  .curHeadPhoto
     img
-      width: 225px
-      height: 150px
-      background: #f3f3f3
-
+      width: 100px
+      height: 100px
+  .headType
+    >div
+      text-align: center
+      font-size: 13px
   .operate
     color: #fff
-  .setPhotoPhoto
+  .setHeadPhoto
     .setBtn
       display: inline-block
       width: 40px
@@ -27,10 +35,10 @@
     -webkit-justify-content: flex-end
 
   .cropper
-    width: 225px
-    height: 150px
+    width: 200px
+    height: 200px
     margin: 10px auto
-    border: 1px solid #f2e8d7
+    border: 1px solid #e3e3e3
 
   .show-preview
     flex: 1
@@ -42,9 +50,8 @@
     .preview
       overflow: hidden
       border-radius: 50%
-      border:1px solid #cccccc
+      border:1px solid #f2e8d7
       background: #cccccc
       margin-left: 40px
   .bottomBtn
-    margin-top: 40px
     text-align: center

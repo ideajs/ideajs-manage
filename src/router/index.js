@@ -2,16 +2,14 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const AppStart = () => import('@/components/appStart')
-const AppRegiste = () => import('@/components/appConfig/appRegiste')
-const AppLogin = () => import('@/components/appConfig/appLogin')
-const AppSet = () => import('@/components/appConfig/appSet')
 const AppCaptcha = () => import('@/components/appConfig/appCaptcha')
 const AppBarCode = () => import('@/components/appConfig/appBarCode')
-const AppResetPass = () => import('@/components/appConfig/appResetPass')
 const AppPhotoImg = () => import('@/components/appConfig/appPhotoImg')
 
 const AppIndex = () => import('@/components/appMain/appIndex')
-const AppMember = () => import('@/components/appMain/appMember')
+
+const AppRegiste = () => import('@/components/appMember/appRegiste')
+const AppLogin = () => import('@/components/appMember/appLogin')
 
 /*
 title 页面标题，
@@ -135,74 +133,11 @@ export default new Router({
       needLogin: true
     }
   }, {
-    path: '/appMember',
-    name: 'AppMember',
-    component: AppMember,
-    meta: {
-      title: '会员',
-      header: {
-        left: 'ios-arrow-back',
-        leftFuc: (fuc) => { fuc && fuc() },
-        right: 'ios-settings',
-        rightFuc: (fuc) => { fuc && fuc() }
-      },
-      touch: {
-        leftFuc: (fuc) => { fuc && fuc() },
-        rightFuc: (fuc) => { fuc && fuc() }
-      },
-      isBack: false,
-      scrollToTop: true,
-      isReload: false,
-      needLogin: true
-    }
-  }, {
-    path: '/appSet',
-    name: 'AppSet',
-    component: AppSet,
-    meta: {
-      title: '设置',
-      header: {
-        left: 'ios-arrow-back',
-        leftFuc: (fuc) => { fuc && fuc() },
-        right: '',
-        rightFuc: (fuc) => { fuc && fuc() }
-      },
-      touch: {
-        leftFuc: (fuc) => { fuc && fuc() },
-        rightFuc: (fuc) => { fuc && fuc() }
-      },
-      isBack: false,
-      scrollToTop: true,
-      isReload: false,
-      needLogin: true
-    }
-  }, {
     path: '/appPhotoImg',
     name: 'AppPhotoImg',
     component: AppPhotoImg,
     meta: {
       title: '图片上传',
-      header: {
-        left: 'ios-arrow-back',
-        leftFuc: (fuc) => { fuc && fuc() },
-        right: '',
-        rightFuc: (fuc) => { fuc && fuc() }
-      },
-      touch: {
-        leftFuc: (fuc) => { fuc && fuc() },
-        rightFuc: (fuc) => { fuc && fuc() }
-      },
-      isBack: false,
-      scrollToTop: true,
-      isReload: false,
-      needLogin: true
-    }
-  }, {
-    path: '/appResetPass',
-    name: 'AppResetPass',
-    component: AppResetPass,
-    meta: {
-      title: '密码重置',
       header: {
         left: 'ios-arrow-back',
         leftFuc: (fuc) => { fuc && fuc() },

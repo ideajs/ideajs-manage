@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import { Button, Input, Form, FormItem, Icon } from 'iview'
 import {drawCaptcha} from '@/common/js/isCaptcha.js'
 import captcha001 from '@/common/images/captcha/captcha001.jpg'
 import captcha002 from '@/common/images/captcha/captcha002.jpg'
@@ -94,7 +93,6 @@ export default {
     },
   },
   components: {
-    Button, Input, Form, FormItem, Icon
   }
 }
 </script>

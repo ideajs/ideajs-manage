@@ -3,7 +3,7 @@ import {CONFIG} from './isConfig'
 import {showLoading, hideLoading, showToast} from './isModel'
 import Vue from 'vue'
 // import md5 from 'js-md5'
-let Base64 = require('js-base64').Base64
+const Base64 = require('js-base64').Base64
 
 // console.log(md5('123')) // md5加密
 // console.log(Base64.encode('123')) // base64加密
