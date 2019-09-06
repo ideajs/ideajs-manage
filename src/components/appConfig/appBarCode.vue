@@ -45,13 +45,12 @@ export default {
   },
   methods: {
     back () {
-      this.$route.meta.isBack = true
-      this.$push({
+      this.$back({
         path: '/appIndex',
         query: {
           type: '3'
         }
-      })
+      }, this)
     },
     getCodeInfo (url, id){
 //        console.log(url)

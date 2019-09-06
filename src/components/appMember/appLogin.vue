@@ -40,6 +40,8 @@ export default {
       data: {
         headerFace: headerFace001,
         headerInfo: this.$route.meta,
+        fromUrl: this.$route.query.fromUrl || '/appMember',
+        toUrl: this.$route.query.toUrl,
         formData: {
           user: '',
           phone: '',
@@ -65,21 +67,19 @@ export default {
     }
   },
   created () {
-    this.data.fromUrl = this.$route.query.fromUrl || '/appMember'
-    this.data.toUrl = this.$route.query.toUrl
-    this.data.appCaptchaInfo.start = this.start
+    /*自定义顶部header两侧按钮事件+页面左右滑动事件*/
     this.$route.meta.header.leftFuc = this.back                 // header左侧返回按钮事件
+    this.data.appCaptchaInfo.start = this.start
   },
   methods: {
     back () {
       Message.destroy()
-      this.$route.meta.isBack = true
       this.$back({
         path: this.data.fromUrl,
         query: {
           type: '3'
         }
-      })
+      }, this)
     },
     start () {
       Message.destroy()
@@ -135,24 +135,22 @@ export default {
     },
     forward () {
       Message.destroy()
-      this.$route.meta.isBack = false
-      this.$back({
+      this.$push({
         path: this.data.toUrl,
         query: {
           type: '3'
         }
-      })
+      }, this)
     },
     onRegiste () {
       Message.destroy()
-      this.$route.meta.isBack = false
       this.$push({
         path: '/appRegiste',
         query: {
           fromUrl: this.data.fromUrl,
           toUrl: this.data.toUrl
         }
-      })
+      }, this)
     }
   },
   components: {

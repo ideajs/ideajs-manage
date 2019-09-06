@@ -1,5 +1,5 @@
 <template xmlns:v-touch="http://www.w3.org/1999/xhtml">
-  <div class="app">
+  <div ref="appRef" class="app">
     <!--
     <transition :name="direction" keep-alive>
       <router-view v-if="!$route.meta.isReload"></router-view>
@@ -29,6 +29,10 @@ export default {
     }
   },
   created () {
+
+  },
+  mounted () {
+    window.scrollApp = this.scrollApp // app上下滚动
   },
   methods: {
     onSwipeLeft () { // 页面左滑-下一页
@@ -36,6 +40,9 @@ export default {
     },
     onSwipeRight () { // 页面右滑-上一页
       this.$route.meta.touch.rightFuc && this.$route.meta.touch.rightFuc()
+    },
+    scrollApp (x, y) {
+      this.$refs.appRef.scrollTo(x, y)
     }
   },
   components: {
@@ -48,15 +55,14 @@ export default {
 .app
   width: 100%
   height: 100vh
+  overflow-y: auto
   background: #fff
   >div
     width: 100%
-    height: 100vh
-    overflow-y: auto
     touch-action: pan-y!important
     >div
       background: #FCFCFC
-      height: 100vh
+      min-height: 100vh
       width: 100%
       >.container
         padding-top: 5.5vh

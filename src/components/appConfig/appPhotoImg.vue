@@ -86,6 +86,9 @@ export default {
       showBack: false,
       data: {
         headerInfo: this.$route.meta,
+        type: this.$route.query.type,
+        toUrl: this.$route.query.toUrl,
+        fromUrl: this.$route.query.fromUrl,
         PhotoImg: ' ',                           // 默认头像图片地址
         previews: {},                          // 预览图片参数
         option: {                              // VueCropper配置参数
@@ -109,23 +112,19 @@ export default {
     }
   },
   created () {
-    this.data.type = this.$route.query.type
-    this.data.toUrl = this.$route.query.toUrl
-    this.data.fromUrl = this.$route.query.fromUrl
     /*自定义顶部header两侧按钮事件+页面左右滑动事件*/
     this.$route.meta.header.leftFuc = this.back                 // header左侧返回按钮事件
     this.$route.meta.touch.rightFuc = this.back                 // 页面向右滑动事件
   },
   methods: {
     back () {
-      this.$route.meta.isBack = true
-      this.$push({
+      this.$back({
         path: this.data.fromUrl,
         query: {
           type: this.data.type,
           toUrl: this.data.toUrl
         }
-      })
+      }, this)
     },
     // 放大/缩小
     changeScale (num) {

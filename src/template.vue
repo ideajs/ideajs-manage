@@ -14,59 +14,56 @@
 </template>
 
 <script>
-  import { Button } from 'iview'
-  import { Popup } from 'vux'
-  import appHeader from'@/components/appConfig/appHeader.vue'
-  export default {
-    name: 'appMenu',
-    data () {
-      return {
-        showBack: false,
-        data: {
-          headerInfo: this.$route.meta
-        }
+import { Button } from 'iview'
+import { Popup } from 'vux'
+import appHeader from '@/components/appConfig/appHeader.vue'
+export default {
+  name: 'appMenu',
+  data () {
+    return {
+      showBack: false,
+      data: {
+        headerInfo: this.$route.meta
       }
-    },
-    created () {
-      /*自定义顶部header两侧按钮事件+页面左右滑动事件*/
-      this.$route.meta.header.leftFuc = this.back                 // header左侧返回按钮事件
-      this.$route.meta.header.rightFuc = this.getMenu             // header右侧菜单按钮事件
-      this.$route.meta.touch.leftFuc = this.start                 // 页面向左滑动事件
-      this.$route.meta.touch.rightFuc = this.back                 // 页面向右滑动事件
-    },
-    methods: {
-      start () {
-        this.$route.meta.isBack = false
-        this.$push({
-          path: '/appSet',
-          query: {
-            type: '3'
-          }
-        })
-      },
-      back () {
-        this.$route.meta.isBack = true
-        this.$back({
-          path: '/appIndex',
-          query: {
-            type: '3'
-          }
-        })
-      },
-      getMenu () {
-        this.$route.meta.isBack = false
-        this.$push({
-          path: '/appMenu',
-          query: {
-            type: '3'
-          }
-        })
-      }
-    },
-    components: {
-      appHeader, Button, Popup
     }
+  },
+  created () {
+    /*自定义顶部header两侧按钮事件+页面左右滑动事件*/
+    this.$route.meta.header.leftFuc = this.back                 // header左侧返回按钮事件
+    this.$route.meta.header.rightFuc = this.getMenu             // header右侧菜单按钮事件
+    this.$route.meta.touch.leftFuc = this.start                 // 页面向左滑动事件
+    this.$route.meta.touch.rightFuc = this.back                 // 页面向右滑动事件
+  },
+  methods: {
+    start () {
+      this.$push({
+        path: '/appSet',
+        query: {
+          type: '3'
+        }
+      }, this)
+    },
+    back () {
+      this.$back({
+        path: '/appIndex',
+        query: {
+          type: '3'
+        }
+      }, this)
+    },
+    getMenu () {
+      this.$push({
+        path: '/appMenu',
+        query: {
+          type: '3'
+        }
+      }, this)
+    }
+  },
+  components: {
+    appHeader, Button, Popup
   }
+}
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">

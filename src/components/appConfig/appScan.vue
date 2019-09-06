@@ -47,13 +47,12 @@ export default {
   },
   methods: {
     back () {
-      this.$route.meta.isBack = true
-      this.$push({
+      this.$back({
         path: '/appIndex',
         query: {
           type: '3'
         }
-      })
+      }, this)
     },
     //创建扫描控件
     startRecognize() {

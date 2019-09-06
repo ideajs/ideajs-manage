@@ -26,9 +26,10 @@ export default {
     }
   },
   created () {
-    this.getDate()
+    /*自定义顶部header两侧按钮事件+页面左右滑动事件*/
     // this.$route.meta.touch.leftFuc = this.start // 页面向左滑动事件
     // this.$route.meta.touch.rightFuc = this.back // 页面向右滑动事件
+    this.getDate()
   },
   methods: {
     start () {
@@ -36,13 +37,12 @@ export default {
       //   console.log(res)
       // })
       this.data.loading = true
-      this.$route.meta.isBack = false
       this.$push({
         path: '/appIndex',
         query: {
           type: '3'
         }
-      })
+      }, this)
     },
     getDate () {
       let week = ['日', '一', '二', '三', '四', '五', '六']
@@ -104,17 +104,6 @@ export default {
         font-size: 1.5rem
       >div:nth-child(1)
         font-size: 1.9rem
-  .qrcode
-    width: 6rem
-    font-size: 1.2rem
-    text-align: center
-    color: #9B7D58
-    position: fixed
-    right: 1.5rem
-    bottom: 1vh
-    img
-     width: 6rem
-     height: 6rem
   .ivu-btn-primary
     width: 6rem
     height: 6rem

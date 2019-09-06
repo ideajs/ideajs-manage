@@ -2,14 +2,23 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const AppStart = () => import('@/components/appStart')
-const AppCaptcha = () => import('@/components/appConfig/appCaptcha')
-const AppBarCode = () => import('@/components/appConfig/appBarCode')
-const AppPhotoImg = () => import('@/components/appConfig/appPhotoImg')
-
-const AppIndex = () => import('@/components/appMain/appIndex')
 
 const AppRegiste = () => import('@/components/appMember/appRegiste')
 const AppLogin = () => import('@/components/appMember/appLogin')
+const AppMember = () => import('@/components/appMember/appMember')
+
+const AppSet = () => import('@/components/appSet/appSet')
+const AppResetPass = () => import('@/components/appSet/appResetPass')
+
+const AppCaptcha = () => import('@/components/appConfig/appCaptcha')
+const AppScan = () => import('@/components/appConfig/appScan')
+const AppBarCode = () => import('@/components/appConfig/appBarCode')
+const AppHeadPhoto = () => import('@/components/appConfig/appHeadPhoto')
+const AppPhotoImg = () => import('@/components/appConfig/appPhotoImg')
+const AppIdCard = () => import('@/components/appConfig/appIdCard')
+
+const AppIndex = () => import('@/components/appMain/appIndex')
+const AppMenu = () => import('@/components/appMain/appMenu')
 
 /*
 title 页面标题，
@@ -28,28 +37,7 @@ export default new Router({
   base: '',
   transitionOnLoad: true,
   routes: [{
-    path: '',
-    name: 'AppStart',
-    component: AppStart,
-    meta: {
-      title: '欢迎',
-      header: {
-        left: '',
-        leftFuc: (fuc) => { fuc && fuc() },
-        right: '',
-        rightFuc: (fuc) => { fuc && fuc() }
-      },
-      touch: {
-        leftFuc: (fuc) => { fuc && fuc() },
-        rightFuc: (fuc) => { fuc && fuc() }
-      },
-      isBack: false,
-      scrollToTop: true,
-      isReload: false,
-      needLogin: true
-    }
-  }, {
-    path: '/appStart',
+    path: '/',
     name: 'AppStart',
     component: AppStart,
     meta: {
@@ -133,11 +121,116 @@ export default new Router({
       needLogin: true
     }
   }, {
+    path: '/appMember',
+    name: 'AppMember',
+    component: AppMember,
+    meta: {
+      title: '会员',
+      header: {
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: 'ios-settings',
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      touch: {
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
+    }
+  }, {
+    path: '/appIdCard',
+    name: 'AppIdCard',
+    component: AppIdCard,
+    meta: {
+      title: '身份证照片',
+      header: {
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: '',
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      touch: {
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
+    }
+  }, {
+    path: '/appMenu',
+    name: 'AppMenu',
+    component: AppMenu,
+    meta: {
+      title: '菜单',
+      header: {
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: '',
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      touch: {
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
+    }
+  }, {
+    path: '/appSet',
+    name: 'AppSet',
+    component: AppSet,
+    meta: {
+      title: '设置',
+      header: {
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: '',
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      touch: {
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
+    }
+  }, {
     path: '/appPhotoImg',
     name: 'AppPhotoImg',
     component: AppPhotoImg,
     meta: {
       title: '图片上传',
+      header: {
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: '',
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      touch: {
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
+    }
+  }, {
+    path: '/appResetPass',
+    name: 'AppResetPass',
+    component: AppResetPass,
+    meta: {
+      title: '密码重置',
       header: {
         left: 'ios-arrow-back',
         leftFuc: (fuc) => { fuc && fuc() },
@@ -175,6 +268,27 @@ export default new Router({
       needLogin: true
     }
   }, {
+    path: '/appScan',
+    name: 'AppScan',
+    component: AppScan,
+    meta: {
+      title: '扫描',
+      header: {
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: 'md-menu',
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      touch: {
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
+    }
+  }, {
     path: '/appBarCode',
     name: 'AppBarCode',
     component: AppBarCode,
@@ -184,6 +298,27 @@ export default new Router({
         left: 'ios-arrow-back',
         leftFuc: (fuc) => { fuc && fuc() },
         right: 'md-menu',
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      touch: {
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
+    }
+  }, {
+    path: '/appHeadPhoto',
+    name: 'AppHeadPhoto',
+    component: AppHeadPhoto,
+    meta: {
+      title: '头像',
+      header: {
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: '',
         rightFuc: (fuc) => { fuc && fuc() }
       },
       touch: {

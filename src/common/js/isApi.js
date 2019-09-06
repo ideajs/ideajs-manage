@@ -22,15 +22,18 @@ export function goURL (url) {
   }
 }
 // 项目内页面跳转方法：push
-export function goPush (param) {
+export function goPush (param, vues) {
+  vues.$route.meta.isBack = false
   router.push(param)
 }
 // 项目内页面返回方法：back
-export function goBack (param) {
+export function goBack (param, vues) {
+  vues.$route.meta.isBack = true
   router.push(param)
 }
 // 项目内页面跳转方法：replace
-export function goReplace (param) {
+export function goReplace (param, vues) {
+  vues.$route.meta.isBack = true
   router.push(param)
 }
 

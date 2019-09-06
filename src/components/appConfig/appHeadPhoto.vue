@@ -97,6 +97,11 @@ export default {
       showBack: false,
       data: {
         headerInfo: this.$route.meta,
+        type: this.$route.query.type,
+        idex: parseInt(this.$route.query.idex),
+        toUrl: this.$route.query.toUrl,
+        fromUrl: this.$route.query.fromUrl,
+        userLogin: localStorage.getItem('userLogin'),     // 获取客户登录状态
         headImg: ' ',                           // 默认头像图片地址
         previews: {},                          // 预览图片参数
         option: {                              // VueCropper配置参数
@@ -120,32 +125,26 @@ export default {
     }
   },
   created () {
-    this.data.type = this.$route.query.type
-    this.data.idex = parseInt(this.$route.query.idex)
-    this.data.toUrl = this.$route.query.toUrl
-    this.data.fromUrl = this.$route.query.fromUrl
-    this.data.userLogin = localStorage.getItem('userLogin') || ''     // 获取客户登录状态
-    if (this.data.userLogin) {
-      this.data.user = JSON.parse(localStorage.getItem(this.data.userLogin))       // 获取客户信息
-      if (this.data.idex === -1) {
-        this.data.headImg = this.data.user.userInfo.headImg || ''           // 头像
-      } else {
-        this.data.headImg = this.data.user.friends[this.data.idex].headImg || ''           // 头像
-      }
-    }
     /*自定义顶部header两侧按钮事件+页面左右滑动事件*/
     this.$route.meta.header.leftFuc = this.back                 // header左侧返回按钮事件
     this.$route.meta.touch.rightFuc = this.back                 // 页面向右滑动事件
+    if (this.data.userLogin) {
+      this.data.user = JSON.parse(localStorage.getItem(this.data.userLogin))       // 获取客户信息
+      if (this.data.idex === -1) {
+        this.data.headImg = this.data.user.userInfo.headImg || ''                  // 头像
+      } else {
+        this.data.headImg = this.data.user.friends[this.data.idex].headImg || ''   // 头像
+      }
+    }
   },
   methods: {
     back () {
-      this.$route.meta.isBack = true
-      this.$push({
+      this.$back({
         path: this.data.fromUrl,
         query: {
           url: this.data.toUrl
         }
-      })
+      }, this)
     },
     // 放大/缩小
     changeScale (num) {

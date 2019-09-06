@@ -35,13 +35,12 @@ export default {
   },
   methods: {
     goIndex () {
-      this.$route.meta.isBack = true
       this.$back({
         path: '/appIndex',
         query: {
           menuName: 'course'
         }
-      })
+      }, this)
     }
   },
   components: {

@@ -47,6 +47,8 @@ export default {
         user: {},
         headerFace: headerFace001,
         headerInfo: this.$route.meta,
+        fromUrl: this.$route.query.fromUrl || '/appMember',
+        toUrl: this.$route.query.toUrl,
         formData: {
           userInfo: {
             type: ['家人'],           // 朋友圈类型
@@ -114,22 +116,20 @@ export default {
     }
   },
   created () {
-    this.data.fromUrl = this.$route.query.fromUrl || '/appMember'
-    this.data.toUrl = this.$route.query.toUrl
-    this.data.appCaptchaInfo.start = this.start
+    /*自定义顶部header两侧按钮事件+页面左右滑动事件*/
     this.$route.meta.header.leftFuc = this.back                 // header左侧返回按钮事件
+    this.data.appCaptchaInfo.start = this.start
   },
   methods: {
     back () {
       Message.destroy()
-      this.$route.meta.isBack = true
-      this.$push({
+      this.$back({
         path: '/appLogin',
         query: {
           fromUrl: this.data.fromUrl,
           toUrl: this.data.toUrl
         }
-      })
+      }, this)
     },
     start () {
       Message.destroy()
@@ -174,13 +174,12 @@ export default {
         content: '用户注册成功！',
         okText: '确定',
         onOk: () => {
-          this.$route.meta.isBack = true
-          this.$push({
+          this.$back({
             path: '/appMember',
             query: {
               type: '3'
             }
-          })
+          }, this)
         }
       })
     },

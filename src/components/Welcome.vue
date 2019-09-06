@@ -32,7 +32,7 @@ export default {
           query: {
             type: '3'
           }
-        })
+        }, this)
       }, 3000)
     }
   },
