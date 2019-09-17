@@ -18,8 +18,8 @@
           </Input>
           <!-- <Button class="phoneCode" type="primary" @click="postCode()">发送验证码</Button> -->
         </FormItem>
-        <FormItem prop="pass">
-          <Input type="password" :maxlength="12" size="large" v-model.trim="data.formData.userInfo.pass" clearable placeholder="设置密码(6-12位英文、数字)">
+        <FormItem prop="key">
+          <Input type="password" :maxlength="12" size="large" v-model.trim="data.formData.userInfo.key" clearable placeholder="设置密码(6-12位英文、数字)">
           <Icon type="ios-lock" slot="prepend"></Icon>
           </Input>
         </FormItem>
@@ -61,7 +61,7 @@ export default {
             phone: '',                // 手机号
             weixin: '',               // 微信
             qq: '',                   // QQ
-            pass: '',                 // 通行证
+            key: '',                 // 通行证
             company: '',              // 公司
             work: '',                 // 职业
             title: '',                // 职称
@@ -104,7 +104,7 @@ export default {
             pattern: /^1[1-9]\d{9}$/,
             message: '手机号应为11位数字'
           },
-          pass: {
+          key: {
             pattern: /^[a-zA-Z0-9]{6,12}$/,
             message: '密码应为6-12位英文、数字'
           }
@@ -150,9 +150,9 @@ export default {
         })
         return
       }
-      if (!rule.pass.pattern.test(this.data.formData.userInfo.pass)) {
+      if (!rule.key.pattern.test(this.data.formData.userInfo.key)) {
         Message.info({
-          content: rule.pass.message + '，请重新输入！',
+          content: rule.key.message + '，请重新输入！',
           duration: 3,
           closable: true
         })

@@ -8,7 +8,7 @@ const AppLogin = () => import('@/components/appMember/appLogin')
 const AppMember = () => import('@/components/appMember/appMember')
 
 const AppSet = () => import('@/components/appSet/appSet')
-const AppResetPass = () => import('@/components/appSet/appResetPass')
+const AppResetKey = () => import('@/components/appSet/appResetKey')
 
 const AppCaptcha = () => import('@/components/appConfig/appCaptcha')
 const AppScan = () => import('@/components/appConfig/appScan')
@@ -226,9 +226,9 @@ export default new Router({
       needLogin: true
     }
   }, {
-    path: '/appResetPass',
-    name: 'AppResetPass',
-    component: AppResetPass,
+    path: '/appResetKey',
+    name: 'AppResetKey',
+    component: AppResetKey,
     meta: {
       title: '密码重置',
       header: {

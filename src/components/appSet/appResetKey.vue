@@ -1,6 +1,6 @@
 <!-- Created by macmzon@163.com-->
 <template>
-  <div class="appResetPass">
+  <div class="appResetkey">
     <div v-transfer-dom>
       <popup v-model="showBack"></popup>
     </div>
@@ -19,17 +19,17 @@
             </Input>
             <!-- <Button class="phoneCode" type="primary" @click="postCode()">发送验证码</Button> -->
           </FormItem>
-          <FormItem prop="pass" class="p-pass">
-            <Input :type="data.passType" :maxlength="12" size="large" v-model.trim="data.formData.pass" clearable placeholder="设置密码(6-12位英文、数字)">
+          <FormItem prop="key" class="p-key">
+            <Input :type="data.keyType" :maxlength="12" size="large" v-model.trim="data.formData.key" clearable placeholder="设置密码(6-12位英文、数字)">
               <span slot="prepend">新密码</span>
-              <span slot="append" @click="seePass()">
-                <Icon v-if="!data.seePass" type="md-eye" />
-                <Icon v-if="data.seePass" type="md-eye-off" />
+              <span slot="append" @click="seekey()">
+                <Icon v-if="!data.seekey" type="md-eye" />
+                <Icon v-if="data.seekey" type="md-eye-off" />
               </span>
             </Input>
           </FormItem>
-          <FormItem prop="copyPass">
-            <Input :type="data.passType" :maxlength="12" size="large" v-model.trim="data.formData.copyPass" clearable placeholder="请再次输入密码">
+          <FormItem prop="copykey">
+            <Input :type="data.keyType" :maxlength="12" size="large" v-model.trim="data.formData.copykey" clearable placeholder="请再次输入密码">
               <span slot="prepend">验密码</span>
             </Input>
           </FormItem>
@@ -48,20 +48,20 @@ import { Popup } from 'vux'
 import appHeader from'@/components/appConfig/appHeader.vue'
 
 export default {
-  name: 'appResetPass',
+  name: 'appResetkey',
   data () {
     return {
       showBack: false,
       data: {
         user: {},
-        seePass: false,
-        passType: 'password',
+        seekey: false,
+        keyType: 'password',
         headerInfo: this.$route.meta,
         formData: {
           user: '',
           phone: '',
-          pass: '',
-          copyPass: ''
+          key: '',
+          copykey: ''
         },
         formRule: {
           user: {
@@ -72,11 +72,11 @@ export default {
             pattern: /^1[1-9]\d{9}$/,
             message: '手机号应为11位数字'
           },
-          pass: {
+          key: {
             pattern: /^[a-zA-Z0-9]{6,12}$/,
             message: '密码应为6-12位英文、数字'
           },
-          copyPass: {
+          copykey: {
             pattern: /^[a-zA-Z0-9]{6,12}$/,
             message: '密码应为6-12位英文、数字'
           },
@@ -98,10 +98,10 @@ export default {
         }
       }, this)
     },
-    seePass () {
+    seekey () {
       Message.destroy()
-      this.data.seePass = !this.data.seePass
-      this.data.passType = this.data.seePass ? 'text' : 'password'
+      this.data.seekey = !this.data.seekey
+      this.data.keyType = this.data.seekey ? 'text' : 'password'
     },
     confirmBtn () {
       Message.destroy()
@@ -122,15 +122,15 @@ export default {
         })
         return
       }
-      if (!rule.pass.pattern.test(this.data.formData.pass)) {
+      if (!rule.key.pattern.test(this.data.formData.key)) {
         Message.info({
-          content: rule.pass.message + '，请重新输入！',
+          content: rule.key.message + '，请重新输入！',
           duration: 3,
           closable: true
         })
         return
       }
-      if (this.data.formData.pass !== this.data.formData.copyPass) {
+      if (this.data.formData.key !== this.data.formData.copykey) {
         Message.info({
           content: '两次输入的密码不一致，请重新输入！',
           duration: 3,
@@ -141,7 +141,7 @@ export default {
       this.data.user = JSON.parse(localStorage.getItem(this.data.formData.phone))       // 获取客户信息
       if (this.data.user) {
         if (this.data.user.userInfo.user === this.data.formData.user) {
-          this.data.user.userInfo.pass = this.data.formData.pass
+          this.data.user.userInfo.key = this.data.formData.key
           localStorage.setItem(this.data.formData.phone, JSON.stringify(this.data.user))
           localStorage.setItem('userLogin', this.data.formData.phone)
           Modal.warning({
@@ -175,5 +175,5 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "stylus/appResetPass.styl"
+  @import "stylus/appResetkey.styl"
 </style>

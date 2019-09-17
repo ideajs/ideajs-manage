@@ -13,8 +13,8 @@
           <Icon type="md-phone-portrait" slot="prepend"></Icon>
           </Input>
         </FormItem>
-        <FormItem prop="pass">
-          <Input type="password" :maxlength="12" size="large" v-model="data.formData.pass" clearable placeholder="密码(6-12位英文、数字)">
+        <FormItem prop="key">
+          <Input type="password" :maxlength="12" size="large" v-model="data.formData.key" clearable placeholder="密码(6-12位英文、数字)">
           <Icon type="ios-lock" slot="prepend"></Icon>
           </Input>
         </FormItem>
@@ -45,7 +45,7 @@ export default {
         formData: {
           user: '',
           phone: '',
-          pass: ''
+          key: ''
         },
         formRule: {
           user: {
@@ -56,7 +56,7 @@ export default {
             pattern: /^1[1-9]\d{9}$/,
             message: '手机号应为11位数字'
           },
-          pass: {
+          key: {
             pattern: /^[a-zA-Z0-9]{6,12}$/,
             message: '密码应为6-12位英文、数字'
           }
@@ -100,9 +100,9 @@ export default {
         })
         return
       }
-      if (!rule.pass.pattern.test(this.data.formData.pass)) {
+      if (!rule.key.pattern.test(this.data.formData.key)) {
         Message.info({
-          content: rule.pass.message + '，请重新输入！',
+          content: rule.key.message + '，请重新输入！',
           duration: 3,
           closable: true
         })
@@ -110,7 +110,7 @@ export default {
       }
       let usermsg = JSON.parse(localStorage.getItem(this.data.formData.phone))
       if (usermsg) {
-        if (usermsg.userInfo.pass === this.data.formData.pass) {
+        if (usermsg.userInfo.key === this.data.formData.key) {
           localStorage.setItem('userLogin', this.data.formData.phone)
           document.getElementById('msg').innerHTML = ''
           if (this.data.toUrl) {
