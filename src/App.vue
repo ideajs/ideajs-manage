@@ -6,8 +6,13 @@
     </transition>
 -->
     <v-touch ref="touch" v-on:swipeleft="onSwipeLeft" v-on:swiperight="onSwipeRight">
+      <!-- 返回此页面不刷新 -->
       <transition :name="direction" keep-alive>
-        <router-view v-if="!$route.meta.isReload"></router-view>
+        <router-view v-if="!$route.meta.isReload && $route.meta.keepAlive"></router-view>
+      </transition>
+      <!-- 返回此页面会刷新 -->
+      <transition :name="direction">
+        <router-view v-if="!$route.meta.isReload && !$route.meta.keepAlive"></router-view>
       </transition>
     </v-touch>
   </div>
