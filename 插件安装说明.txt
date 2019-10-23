@@ -3,11 +3,11 @@
 vue.js项目安装插件列表：
 
 1. iView：HTML5前端-PC客户端插件库
-  npm install iview --save-dev
+  npm install iview --save
 
 2. VUX：HTML5前端-移动客户端插件库
-  npm install vux --save-dev
-  npm install vux-loader --save-dev
+  npm install vux --save
+  npm install vux-loader --save
   npm install less less-loader --save-dev
   npm install yaml-loader --save-dev
 
@@ -45,3 +45,10 @@ vue.js项目安装插件列表：
 
 13. increase-memory-limit：增加node服务器内存限制
   npm install increase-memory-limit --save-dev
+
+14. mysql：连接mysql数据库工具
+  npm install mysql --save
+15. express：Node.js Web 应用程序开发框架
+  npm install express --save
+16. body-parser：express的中间件
+  npm install body-parser --save

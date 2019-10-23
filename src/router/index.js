@@ -1,15 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+/* 启动页 */
 const AppStart = () => import('@/components/appStart')
 
+/* 会员页 */
 const AppRegiste = () => import('@/components/appMember/appRegiste')
 const AppLogin = () => import('@/components/appMember/appLogin')
 const AppMember = () => import('@/components/appMember/appMember')
+/* mysql本地服务测试登录功能 */
+const IsTestLogin = () => import('@/components/appMember/isTestLogin')
 
+/* 设置 */
 const AppSet = () => import('@/components/appSet/appSet')
 const AppResetKey = () => import('@/components/appSet/appResetKey')
 
+/* 功能页 */
 const AppCaptcha = () => import('@/components/appConfig/appCaptcha')
 const AppScan = () => import('@/components/appConfig/appScan')
 const AppBarCode = () => import('@/components/appConfig/appBarCode')
@@ -17,6 +23,7 @@ const AppHeadPhoto = () => import('@/components/appConfig/appHeadPhoto')
 const AppPhotoImg = () => import('@/components/appConfig/appPhotoImg')
 const AppIdCard = () => import('@/components/appConfig/appIdCard')
 
+/* 主页 */
 const AppIndex = () => import('@/components/appMain/appIndex')
 const AppMenu = () => import('@/components/appMain/appMenu')
 
@@ -84,6 +91,27 @@ export default new Router({
     component: AppLogin,
     meta: {
       title: '登录',
+      header: {
+        left: 'ios-arrow-back',
+        leftFuc: (fuc) => { fuc && fuc() },
+        right: '',
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      touch: {
+        leftFuc: (fuc) => { fuc && fuc() },
+        rightFuc: (fuc) => { fuc && fuc() }
+      },
+      isBack: false,
+      scrollToTop: true,
+      isReload: false,
+      needLogin: true
+    }
+  }, {
+    path: '/isTestLogin',
+    name: 'IsTestLogin',
+    component: IsTestLogin,
+    meta: {
+      title: 'mysql本地测试登录',
       header: {
         left: 'ios-arrow-back',
         leftFuc: (fuc) => { fuc && fuc() },
