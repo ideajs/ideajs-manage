@@ -13,6 +13,15 @@ import {sync} from 'vuex-router-sync'
 import VueTouch from 'vue-touch'
 import 'iview/dist/styles/iview.css'
 import { TransferDom } from 'vux'
+import VConsole from 'vconsole'
+var config = require('../config')
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
+}
+if (process.env.NODE_ENV !== 'production') {
+  const vConsole = new VConsole()
+  Vue.use(vConsole)
+}
 
 Vue.use(VueResource)
 Vue.use(Vuex)

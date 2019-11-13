@@ -48,7 +48,15 @@ vue.js项目安装插件列表：
 
 14. mysql：连接mysql数据库工具
   npm install mysql --save
+
 15. express：Node.js Web 应用程序开发框架
   npm install express --save
+
 16. body-parser：express的中间件
   npm install body-parser --save
+
+17. cross-env 运行跨平台设置和使用环境变量的脚本
+  npm install --save-dev cross-env
+
+18. vconsole 移动端网页调试神器
+  npm install vconsole

@@ -1,9 +1,7 @@
 // Created by macmzon@163.com
+// 测试配置
 import {DEV_CONFIG} from './isConfig-dev'
+// 生产配置
 import {PRO_CONFIG} from './isConfig-pro'
 
-// 测试环境打包专用
-export const CONFIG = DEV_CONFIG
-
-// 生产环境打包专用
-// export const CONFIG = PRO_CONFIG
+export const CONFIG = process.env.NODE_ENV === 'production' ? PRO_CONFIG : DEV_CONFIG
