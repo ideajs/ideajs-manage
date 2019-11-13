@@ -59,4 +59,4 @@ vue.js项目安装插件列表：
   npm install --save-dev cross-env
 
 18. vconsole 移动端网页调试神器
-  npm install vconsole
+  npm install vconsole --save
