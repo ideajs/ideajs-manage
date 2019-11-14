@@ -7,10 +7,10 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
-    "develop": "cross-env BABEL_ENV=dev node build/build.js",
-    "test": "cross-env BABEL_ENV=test node build/build.js",
-    "build": "cross-env BABEL_ENV=prod node build/build.js",
-    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
+    "develop": "cross-env NODE_ENV=development node build/test.js",
+    "test": "cross-env NODE_ENV=testing node build/test.js",
+    "build": "cross-env NODE_ENV=production node build/build.js",
+    "unit": "cross-env NODE_ENV=testing karma start test/unit/karma.conf.js --single-run",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
     "fix-memory-limit": "cross-env LIMIT=40096 increase-memory-limit"
   },
