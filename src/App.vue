@@ -57,6 +57,7 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @import 'common/css/iview.css'
   @import "common/stylus/reset.styl"
 .app
   width: 100%

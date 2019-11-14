@@ -11,7 +11,6 @@ import {HTTP_POST, HTTP_GET} from './common/js/isHttp'
 import {goURL, goPush, goBack, goReplace} from './common/js/isApi'
 import {sync} from 'vuex-router-sync'
 import VueTouch from 'vue-touch'
-import 'iview/dist/styles/iview.css'
 import { TransferDom } from 'vux'
 import VConsole from 'vconsole'
 var config = require('../config')

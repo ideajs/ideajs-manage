@@ -5,8 +5,8 @@
   "author": "macmzon@163.com",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
-    "start": "node build/dev-server.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "start": "npm run dev",
     "develop": "cross-env NODE_ENV=development node build/test.js",
     "test": "cross-env NODE_ENV=testing node build/test.js",
     "build": "cross-env NODE_ENV=production node build/build.js",
